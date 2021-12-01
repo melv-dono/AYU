@@ -1,5 +1,4 @@
 # AYU
 
 test
-test
-MT-test2
+test.
