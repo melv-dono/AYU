@@ -1,4 +1,3 @@
 # AYU
 
 test
-MT
