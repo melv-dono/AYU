@@ -1,4 +1,9 @@
 # AYU
 
-test
-test.
+Projet AYU
+
+Timotei GERANTE
+Melvyn NZENGA-TAYOU
+Minh-Tri NGUYEN
+
+2021-2022
