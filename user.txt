@@ -1,0 +1,27 @@
+------------------------------------------------------------
+-- Table: User
+------------------------------------------------------------
+CREATE TABLE public.User(
+	userId         SERIAL NOT NULL ,
+	nomUtilisateur VARCHAR (25) NOT NULL ,
+	prenom         VARCHAR (25) NOT NULL ,
+	nom            VARCHAR (25) NOT NULL ,
+	rule           VARCHAR (25) NOT NULL ,
+	dateCreation   DATE  NOT NULL ,
+	CONSTRAINT prk_constraint_User PRIMARY KEY (userId)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: session
+------------------------------------------------------------
+CREATE TABLE public.session(
+	idSession          SERIAL NOT NULL ,
+	accesstoken        VARCHAR (50) NOT NULL ,
+	accesstokenexpiry  DATE  NOT NULL ,
+	refreshtoken       VARCHAR (50) NOT NULL ,
+	refreshtokenexpiry DATE  NOT NULL ,
+	userId             INT  NOT NULL ,
+	CONSTRAINT prk_constraint_session PRIMARY KEY (idSession)
+)WITHOUT OIDS;
+
