@@ -25,3 +25,4 @@ CREATE TABLE public.session(
 	CONSTRAINT prk_constraint_session PRIMARY KEY (idSession)
 )WITHOUT OIDS;
 
+http://agendas.iut.univ-paris8.fr/index.php?login=VOTRELOGIN
