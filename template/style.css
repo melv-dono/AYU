@@ -15,6 +15,28 @@ main {
     border: solid gray 1px;
 }
 
+.ticket {
+    border-radius: 15px;
+    border: solid #8800ff 3px;
+}
+
+.bot_button {
+    all:unset;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    cursor:pointer;
+    position: absolute;
+    top: 400px;
+    right: 15px;
+}   
+
+.bot {
+    width: 99px;
+    height: 99px;
+}
+
 /*------ section de gauche ------*/
 .gauche {
     width: 75%;
