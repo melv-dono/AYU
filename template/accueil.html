@@ -17,29 +17,28 @@
     <main>
 
     <!-- formulaire ticket -->
-        <form class="ticket"> <!--style="visibility: collapse;"-->>
-            <select class="materiel_num" name="Numéro materiel">
+        <form class="ticket" id="Ticket"> <!--style="visibility: collapse;"-->
+            <select class="item_num" name="Numéro materiel">
                 <option value="lampe">lampe</option>
                 <option value="porte">porte</option>
                 <option value="poste">poste</option>
             </select>
 
-            <select class="salle_num" name="Numéro salle">
+            <select class="item_num" name="Numéro salle">
                 <option value="A">Batiment A</option>
                 <option value="B">Batiment B</option>
                 <option value="C">Batiment C</option>
             </select>
 
-            <textarea placeholder="Quel est le problème ?" style="width: 280;"></textarea>
-            <button>Envoyer</button>
+            <textarea placeholder="Quel est le problème ?" style="width: 280;" class="requete" rows="5" cols="40" ></textarea>
+            <button class="item_num" >Envoyer</button>
         </form>
 
     <!-- bouton help -->
 
-        <button class="bot_button">
+        <button class="bot_button" onclick="myFunction()">
             <img class="bot" src="img/bender.png" alt="helper">
         </button>
-    
     
 
     <!-- section du gauche -->
@@ -61,6 +60,8 @@
     <footer>
         <p>AYU - All rights reserved, 2021</p>
     </footer>
+
+    <script src="./scripts/index.js"></script>
 
 </body>
 

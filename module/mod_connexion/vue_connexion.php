@@ -9,7 +9,7 @@ Class Vue_connexion{
     <html lang="fr" dir="ltr">
       <head>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="./module/Mod_connexion/styles/style.css">
+        <link rel="stylesheet" href="./module/mod_connexion/styles/style.css">
         <title></title>
       </head>
       <body>

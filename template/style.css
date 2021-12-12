@@ -16,8 +16,28 @@ main {
 }
 
 .ticket {
+    width: 400px;
+    height: 500px;
     border-radius: 15px;
     border: solid #8800ff 3px;
+    text-align: center;
+    position: absolute;
+    right: 15px;
+    background-color: white;
+}
+
+.item_num {
+    border-radius: 5px;
+    border: solid #8800ff 3px;
+    display: block;
+    margin-top: 15%;
+    margin-left: 35%;
+}
+
+.requete {
+    margin-top: 15%;
+    border: solid #8800ff 3px;
+    border-radius: 5px;
 }
 
 .bot_button {
