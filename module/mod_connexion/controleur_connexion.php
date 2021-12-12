@@ -12,5 +12,9 @@ Class Controleur_connexion{
     isset($_GET['action']) ? $this->action=$_GET['action'] : false;
   }
   //
-  function init(){$this->vue->affiche_form();}
-}
+  function init(){
+    // isset($this->action) ? $this->modele->
+    $this->vue->affiche_form();
+  }
+
+  }
