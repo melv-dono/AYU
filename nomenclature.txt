@@ -1,0 +1,8 @@
+Pour les requêtes sql en php : 
+	- select : $ReqContenu
+	- insert : $InsContenu
+	- update : $UptContenu
+	- delete : $DelContenu
+
+Return de requêtes sql en php : 
+	- $Contenu
