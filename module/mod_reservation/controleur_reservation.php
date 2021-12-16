@@ -1,6 +1,6 @@
 <?php
 		include_once 'modele_reservation.php';
-		include_once 'vue_accueil.php';
+		include_once 'vue_reservation.php';
 		
 		class Controleur_reservation {
 			private $modele;
