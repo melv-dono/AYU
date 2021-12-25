@@ -5,7 +5,6 @@ Class Vue_connexion{
   }
   function affiche_form(){
     echo '
-      
       <link rel="stylesheet" href="./module/mod_connexion/styles/style.css">
       <main>
         <h2>Login</h2>

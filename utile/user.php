@@ -1,11 +1,11 @@
 <?php
     require_once('./db.php');
-    function getUserId() {
-        $ReqUserId = $db->prepare('SELECT userId FROM session WHERE accesstoken = ?;');
-        $ReqUserId->execute(array($userToken));
-        $UserId = $ReqUserId->fetch(PDO::FETCH_OBJ);
-        if (isset($UserId)) {
-            return $UserId;
+    //
+    function getUserId($access_token) {
+        $ReqUserId=$db->prepare('SELECT userId FROM session WHERE accesstoken=:access_token;');
+        $ReqUserId->bindParam(":access_token",$access_token,PDO::PARAM_STR);
+        $ReqUserId->execute();
+        return $UserId=$ReqUserId->fetch(PDO::FETCH_ASSOC) ? $UserId : false;
         }
     }
 ?>
