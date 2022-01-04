@@ -4,7 +4,7 @@
             
         }
 
-        public function luminositer() {
+        public function luminosite() {
             
         }
 
