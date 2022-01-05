@@ -39,8 +39,8 @@ main h2{
 form{
   min-height: 269px;
   overflow: hidden;
-  border: solid 3px #8800ff;
-  background-color:#fcfcfc;
+  background-color: white;
+  /*background-color:#fcfcfc; */
   /*box-shadow:2px 2px  20px 2px gray ;*/
   border-radius: 10px;
   width:40%;

@@ -4,6 +4,7 @@ Class Modele_connexion{
 
   function insertSession($username,$password){
       try{
+        // Select if exist user in tbl=User
         $ReqExiUserDetails=$db->prepare("SELECT userid,motdepasse FROM user WHERE nomutilisateur=:username");
         $ReqExiUserDetails->bindParam(":username",$username,PDO::PARAM_STR);
         $ReqExiUserDetails->execute();
@@ -29,25 +30,45 @@ Class Modele_connexion{
         $InsNewSession->bindParam(":accesstokenexpiry", $access_token_expiry, PDO::PARAM_INT);
         $InsNewSession->bindParam(":refreshtokenexpiry", $refresh_token_expiry, PDO::PARAM_INT);
         $InsNewSession->execute();
-        $InsNewSession->rowCount()<1 ? sendError("No row insert") : false;
+        return $InsNewSession->rowCount()<1 ? 0 : 1;
       }catch(PDOException $err){
         error_log('Database error : '.$err);
         sendError($err);
       }
   }
-
   // Insert into user table new user
-  function inscription($username, $password){
+  function signin($username, $password, $firstname, $lastname, $role){
+    checkIfExist($username)<1 ? sendError("User already exist") : false;
+    $hashed_password=password_hash($password,"PASSWORD_DEFAULT");
     try{
-      $InsNewUser=$db->prepare("INSERT INTO ")
-
+      $InsNewUser=$db->prepare("INSERT INTO user (nomUtilisateur,password,prenom,nom,role,datecreation)
+      VALUES (:username,:password,:firstname,:lastname,:role,NOW())");
+      $InsNewUser->bindParam(":username",$username,PDO::PARAM_STR);
+      $InsNewUser->bindParam(":password",$hashed_password,PDO::PARAM_STR);
+      $InsNewUser->bindParam(":firstname",$firstname,PDO::PARAM_STR);
+      $InsNewuser->bindParam(":lastname",$lastname,PDO::PARAM_STR);
+      $InsNewUser->bindParam(":role",$role,PDO::PARAM_STR);
+      $InsNewUser->execute();
+      return $InsNewUser->rowCount()<1 0 : 1;
     }catch(PDOException $err){
-
+      error_log($err);
     }
   }
+
   function sendError($error){
     echo $error;
     exit(-1);
+  }
+
+  function checkIfExist($username){
+    try{
+      $ReqExiUser=$db->prepare("SELECT userid FROM user WHERE username=:username");
+      $ReqExiUser->bindParam(":username", $username,PDO::PARAM_STR);
+      $ReqExiUser->execute();
+      return $ReqExiUser->rowCount()<1 0 : 1;
+    }catch(PDOException $err){
+
+    }
   }
 
 }
