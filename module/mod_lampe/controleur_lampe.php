@@ -10,10 +10,21 @@
 			public function __construct() {
 				$this->modele = new Modele_lampe();
 				$this->vue = new Vue_lampe();
-			}
-	
-			function menu() {
 				$this->vue->menu();
+			}
+
+			function afficherListeLampesSalle($numSalle) {
+				$this->modele->getListeLampesSalle($numSalle);
+			}
+
+			function allumer($numSalle){
+				$allumer=1;
+				$this->modele->allumer($numSalle, $allumer);
+			}
+
+			function eteindre($numSalle){
+				$allumer=0;
+				$this->modele->allumer($numSalle, $allumer);
 			}
 		}
 	?>
