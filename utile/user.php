@@ -6,6 +6,5 @@
         $ReqUserId->bindParam(":access_token",$access_token,PDO::PARAM_STR);
         $ReqUserId->execute();
         return $UserId=$ReqUserId->fetch(PDO::FETCH_ASSOC) ? $UserId : false;
-        }
     }
 ?>
