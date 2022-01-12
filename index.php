@@ -6,6 +6,7 @@
 </head>
 <body>
 <?php
+    print_r($_POST);
     require_once("./db.php");
     require_once("./module/mod_connexion/mod_connexion.php");
     $modConnexion = new Mod_connexion();

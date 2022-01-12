@@ -3,7 +3,7 @@ Class Vue_connexion{
   function signin_form(){
     echo ('
     <link rel="stylesheet" href="./module/mod_connexion/styles/style.css">
-    <form action="index?action=signin" methode="POST">  
+    <form action="index.php?action=signin" method="POST">  
         <div class="mb-3">
           <label for="input_username" class="form-label">Username</label>
           <input type="text" class="form-control" id="input_username" name="username" />
@@ -31,14 +31,14 @@ Class Vue_connexion{
       <link rel="stylesheet" href="./module/mod_connexion/styles/style.css">
       <main>
         <h2>Login</h2>
-        <form action="./index.php?action=login">
+        <form action="./index.php?action=login" method="POST">
           <div class="mb-3">
             <label for="username_input" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username_input">
+            <input type="text" class="form-control" id="username_input" name="username">
           </div>
           <div class="mb-3">
             <label for="password_input" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password_input">
+            <input type="password" class="form-control" id="password_input" name="password">
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>

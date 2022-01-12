@@ -1,11 +1,17 @@
 <?php
-try{
-  //mysql:HOST;dbname,id,mdp:
-  require_once("./identifiants.php");
-  $db=new PDO($dns,$user,$password);
-}catch(PDOException $err){
-  error_log("Database error : ".$err);
-  echo $err;
-  exit -1;
+class DB{
+    
+  protected static $db; 
+
+  public static function initConnexion(){
+      try {
+          require_once("./identifiants.php");
+          self::$db = new PDO($dns,$user,$password); //Connexion a la Base de Données
+      } catch (Exception $e) {
+          die('Error : ' . $e->getMessage());
+      }
+  }
 }
+DB::initConnexion();
+
 ?>
