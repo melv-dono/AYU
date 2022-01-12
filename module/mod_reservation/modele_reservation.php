@@ -8,12 +8,12 @@
             // Donc modifier le reste de la classe plus tard
             $this->salle = htmlspecialchars($_GET['salle']);
             $this->date = htmlspecialchars($_GET['date']);
-            $this->debut = htmlspecialchars($_GET['debut']);
+            $this->heure = htmlspecialchars($_GET['heure']);
             $this->duree = htmlspecialchars($_GET['duree']);
             $this->fin = htmlspecialchars($_GET['fin']); // facultatif
         }
 
-        public function reserver($salle, $debut, $fin) {
+        public function reserver($salle, $date, $heure, $duree) {
             // Attention modification BD
             $success=0;
             $dureeMin = new DateInterval('PT30M');

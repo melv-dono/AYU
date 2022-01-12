@@ -36,11 +36,12 @@
 			}
 
 			function reserver() {
-				$this->salle = htmlspecialchars($_GET['salle']);
-				$this->debut = htmlspecialchars($_GET['debut']);
-				$this->fin = htmlspecialchars($_GET['fin']);
+				$salle = htmlspecialchars($_POST['salle']);
+				$duree = htmlspecialchars($_POST['duree']);
+				$date = htmlspecialchars($_POST['date']);
+				$heure = htmlspecialchars($_POST['heure']);
 				
-				$this->modele->reserver($this->salle, $this->debut, $this->fin);
+				$this->modele->reserver($salle, $date, $heure, $duree);
 			}
 
 			function dispoSalle() {

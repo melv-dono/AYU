@@ -10,7 +10,8 @@
               <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
               <main>
                 <h2>Espace Réservation</h2>
-                <form action="/~mnzengatayou/AYU/module/mod_reservation/controleur_reservation.php" method="post">
+                
+                <form action="/~mnzengatayou/AYU/module/mod_reservation/vue_reservation.php" method="post">
                 <select name="cars" id="salle" form="formResa">
                   <option value="A1-01">Salle A1-01</option>
                   <option value="A1-02">Salle A1-02</option>
@@ -18,10 +19,10 @@
                 </select> 
           
                  <label for="date">Sélectionner la date:</label>
-                 <input type="date" name="birtdate" min= "2022-01-01" max="2023-01-01" >
+                 <input type="date" name="date" min= "2022-01-01" max="2023-01-01" >
           
-                 <label for="appt">Choisir une heure:</label>
-                 <input type="time" id="appt" name="appt">
+                 <label for="heure">Choisir une heure:</label>
+                 <input type="time" name="heure ">
           
                 <label for="duree">Déterminer une durée:</label>
                 <select name="duree">
@@ -37,4 +38,15 @@
             ';
         }
     }
+
+    $a = new Vue_reservation();
+    $a->affiche_form();
+
+    $tes = htmlspecialchars($_POST['date']);
+    //echo $tes . "il y a un espace";
+    if (!isset($tes)||$tes=="")
+    echo "Please select a date";
+    else
+      
+      echo $tes;
 ?>
