@@ -24,5 +24,12 @@
                 echo 'éteint';
             }
         }
+
+        public function getNumSalle(){
+            $selectRequete=self::$bdd->prepare("SELECT numerosalle FROM reservation where userid=?;");
+            $selectRequete->execute(array($_SESSION[userid]));
+            $result=$selectRequete->fechAll(PDO::FETCH_ASSOC);
+            return $result;
+        }
     }
 ?>
