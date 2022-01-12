@@ -7,10 +7,10 @@
             // Attention cette partie du code est mtn dans le conterolleur
             // Donc modifier le reste de la classe plus tard
             $this->salle = htmlspecialchars($_GET['salle']);
+            $this->date = htmlspecialchars($_GET['date']);
             $this->debut = htmlspecialchars($_GET['debut']);
             $this->duree = htmlspecialchars($_GET['duree']);
-            $this->date = htmlspecialchars($_GET['date']);
-            $this->fin = htmlspecialchars($_GET['fin']);
+            $this->fin = htmlspecialchars($_GET['fin']); // facultatif
         }
 
         public function reserver($salle, $debut, $fin) {
