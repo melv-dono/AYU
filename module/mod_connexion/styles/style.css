@@ -37,16 +37,16 @@ main h2{
   border-color: #8800ff !important;
 }
 form{
-  min-height: 269px;
-  overflow: hidden;
-  background-color: white;
-  /*background-color:#fcfcfc; */
-  /*box-shadow:2px 2px  20px 2px gray ;*/
-  border-radius: 10px;
-  width:40%;
-  height: 40%;
-  margin :auto;
+
+  width: 30%;
+  margin: auto;
+  margin-top: auto;
+  margin-top: 150px;
+  text-align: center;
+  border: 2px #aaa3a317 solid;
   padding: 20px;
+  background-color  :white;
+  overflow: hidden;
 }
 @media screen and (max-width: 800px) {
   form{

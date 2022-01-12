@@ -49,7 +49,7 @@ Class Modele_connexion{
       $InsNewuser->bindParam(":lastname",$lastname,PDO::PARAM_STR);
       $InsNewUser->bindParam(":role",$role,PDO::PARAM_STR);
       $InsNewUser->execute();
-      return $InsNewUser->rowCount()<1 0 : 1;
+      return $InsNewUser->rowCount()<1 ? 0 : 1;
     }catch(PDOException $err){
       error_log($err);
     }
@@ -65,9 +65,9 @@ Class Modele_connexion{
       $ReqExiUser=$db->prepare("SELECT userid FROM user WHERE username=:username");
       $ReqExiUser->bindParam(":username", $username,PDO::PARAM_STR);
       $ReqExiUser->execute();
-      return $ReqExiUser->rowCount()<1 0 : 1;
+      return $ReqExiUser->rowCount()<0? 0 : 1;
     }catch(PDOException $err){
-
+      sendError($err);
     }
   }
 

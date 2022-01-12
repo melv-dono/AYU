@@ -2,14 +2,11 @@
 Class Vue_connexion{
   function signin_form(){
     echo ('
-    <form action="index?action=signin" methode="POST">
-        <div class="mb-3">
-          <label for="input_email" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="input_email" name="email" />
-        </div>
+    <link rel="stylesheet" href="./module/mod_connexion/styles/style.css">
+    <form action="index?action=signin" methode="POST">  
         <div class="mb-3">
           <label for="input_username" class="form-label">Username</label>
-          <input type="email" class="form-control" id="input_username" name="username" />
+          <input type="text" class="form-control" id="input_username" name="username" />
         </div>
         <div class="mb-3">
           <label for="input_firstname" class="form-label">Firstname</label>
