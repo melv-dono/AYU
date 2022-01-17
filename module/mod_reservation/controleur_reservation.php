@@ -48,6 +48,13 @@
 				$this->model->listSalleDispo();
 			}
 
+			function dispoCreneaux() {
+				$ok = $this->modele->creneauxDispo($date, $salle);
+				if ($ok != 6)
+					$this->vue->afficheCreneau($ok);
+				else
+					$this->vue->creanauIndispo();
+			}
 
 			function affiche_form(){
 				$salles = $this->dispoSalle();

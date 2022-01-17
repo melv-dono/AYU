@@ -11,15 +11,19 @@
               <main>
                 <h2>Espace Réservation</h2>
                 
-                <form action="/~mnzengatayou/AYU/module/mod_reservation/vue_reservation.php" method="post">
+                <form action="/~melvyn/AYU/module/mod_reservation/vue_reservation.php" method="post">
                 <select name="cars" id="salle" form="formResa">
-                  <option value="A1-01">Salle A1-01</option>
-                  <option value="A1-02">Salle A1-02</option>
-                  <option value="A1-03">Salle A1-03</option>
+                  <option value="B112">Salle B1-12</option>
+                  <option value="B112">Salle B1-12</option>
+                  <option value="B112">Salle B1-12</option>
                 </select> 
           
                  <label for="date">Sélectionner la date:</label>
                  <input type="date" name="date" min= "2022-01-01" max="2023-01-01" >
+
+                 <label for="date">Sélectionner la date:</label>
+                 <input type="datetime-local" name="dateTime">
+                 
           
                  <label for="heure">Choisir une heure:</label>
                  <input type="time" name="heure ">
@@ -32,21 +36,86 @@
                   <option value="120">2 heures</option>
                 </select> 
 
-               <input type="submit">
+               <input type="submit" value="here" name="Sub">
                 </form>
               </main>
             ';
         }
+
+        function afficheCreneau($creneaux) {
+          echo '<form action="/~melvyn/AYU/module/mod_reservation/vue_reservation.php" method="post">';
+          
+          // Bientôt utiliser la var global pour la limite
+          // Attention nous somme dans le cas ou $creneaux est la liste des créneaux déjà réserver 
+          // Plus simple serait de prendre la liste inverse pour enlever cette partie de la vue
+          for ($i =0; $i<10; $i++) {
+            $currentCreneau = new Datetime();
+            $currentCreneau->setTime($i+9);
+            if ($creneaux[$i] != $currentCreneau) {
+              if ($i % 3 == 0 && $i != 0)
+              echo '
+                <input type="checkbox" name="heure' . $i . '" value="' . $currentCreneau .'">
+                <br></br>
+              ';
+              else
+                echo '<input type="radio" name="heure' . $i . '" value="' . $currentCreneau .'">';
+            }
+          }
+      
+          echo '
+            <input type="submit" name="sub">
+            </form>
+          ';
+        }
+
+        function creanauIndispo() {
+          echo "Désolé mais il n'y a plus de créneaux disponibles.";
+        }
     }
 
-    $a = new Vue_reservation();
-    $a->affiche_form();
+    // $a = new Vue_reservation();
+    // $a->affiche_form();
 
-    $tes = htmlspecialchars($_POST['date']);
-    //echo $tes . "il y a un espace";
-    if (!isset($tes)||$tes=="")
-    echo "Please select a date";
-    else
-      
-      echo $tes;
+    // $tes = htmlspecialchars($_POST['dateTime']);
+    // $sb = htmlspecialchars($_POST['Sub']);
+
+    // //echo $tes . "il y a un espace";
+    // // if (isset($sb))
+    // if (!isset($tes)||$tes=="")
+    // echo "Please select a date";
+    // else
+    //   echo $tes . "\n";
+    //   $d=strtotime($tes);
+    //   $date = new Datetime();       
+    //   $date->setTimestamp($d);
+    //   echo $date->format(' Y-m-d H:i:s') . "\n";
+
+
+    echo '<form action="/~melvyn/AYU/module/mod_reservation/vue_reservation.php" method="post">';
+
+    for ($i =0; $i<10; $i++) {
+      if ($i % 3 == 0 && $i != 0)
+        echo '
+          <input type="checkbox" name="heure' . $i . '" value="' . $i .'">
+          <br></br>
+        ';
+      else
+        echo '<input type="radio" name="heure' . $i . '" value="' . $i .'">';
+    }
+
+    echo '
+      <input type="submit" name="sub">
+      </form>
+    ';
+
+    $valid = htmlspecialchars($_POST['sub']);
+    if (isset($valid)) { 
+      for ($j = 0; $j<10; $j++) {
+        $id = 'heure' . $j;
+        $myVar = htmlspecialchars($_POST[$id]);
+        if (isset($myVar))
+          echo $myVar;
+      }
+    }
+
 ?>
