@@ -6,11 +6,7 @@
 </head>
 <body>
 <?php
-<<<<<<< HEAD
     session_start();
-=======
-    print_r($_POST);
->>>>>>> c95e032a9110f392c0e6f6bf4de09f31c678ede7
     require_once("./db.php");
     require_once("./module/mod_connexion/mod_connexion.php");
     $modConnexion = new Mod_connexion();
