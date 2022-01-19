@@ -45,8 +45,8 @@
 			}
 
 			function dispoSalle() {
-				$this->model->listSalleDispo();
-			}
+				$this->model->salleDispo();
+			}git commit -m "fin fonction créneauDispo module résa
 
 			function dispoCreneaux() {
 				$ok = $this->modele->creneauxDispo($date, $salle);

@@ -71,29 +71,34 @@
             return $ListSalleDispo;
         }
 
+        // Liste de toutes salles
+        function sallesDispo() {
+            $ReqSallesDispo = $db->prepare('SELECT numerosalle FROM salle;');
+            $ReqSallesDispo->execute();
+            $SalleDispo = $ReqSallesDispo->fech(PDO::FETCH_ASSOC);
+            return $SalleDispo;
+        }
+
+        // Attention test à supprimer lors du refactor
         function creneauxReserve($date, $salle) {
-            // Verifier que la requète et bonne et que le execute avec une liste fonction bien
-            // Voir dans quelle mesure il est possible de cast un FETCH_OBJ en array()
             try {
-                // Récuperation des créneaux disponibles
-                $ReqCreneaux = parent::$db->prepare('SELECT count(idreserv) FROM reservation WHERE dateD = ? and numerosalle = ? ;');
+                // Récuperation du nombre de créneaux réservés
+                $ReqCreneaux = parent::$db->prepare('SELECT count(idreserv) as nbResa FROM reservation WHERE dateD = ? and numerosalle = ? ;');
                 $ReqCreneaux->execute(array($date, $salle));
                 $Creneaux= $ReqCreneaux->fetch(PDO::FETCH_ASSOC);
 
-                // Récupération des créneaux inf à la limite (10)
-                // Un return vide signifie aucun créneau réservé
-                // Faire une var global pour la limite de resa (10)
-                if ($ReqCreneaux->rowCount() == 0 || ($ReqCreneaux->rowCount() >0 && (int)$Creneaux['count(idreserv)'] < 10)) {
-                    $ReqListCreneaux = parent::$db->prepare('SELECT heure FROM reservation WHERE dateD = ? and numerosalle = ? ORDER BY heure;');
+                // Récupération des créneaux dispo
+                if ((int)$Creneaux['nbResa'] < 10) {
+                    $ReqListCreneaux = parent::$db->prepare('SELECT HOUR(cast(heure as time)) as heure2 FROM reservation WHERE dateD = ? and numerosalle = ? ORDER BY heure;');
                     $ReqListCreneaux->execute(array($date, $salle));
                     $ListCreneaux = $ReqListCreneaux->fetchAll(PDO::FETCH_ASSOC);
-                    var_dump($ListCreneaux[0]['heure']);
-                    echo count($ListCreneaux);
+                    $creneauxDispo = $this->creneauxDispo($ListCreneaux);
+                    echo "This is the first available : " . $creneauxDispo[0];
+                    return $creneauxDispo;
                 }
-                else {
-                    //Attention mieux gérer le problème
-                    echo "Il n'a plus de réservation disposible";
-                }
+                // Aucune réservation dispo
+                else
+                    return array();
 
             }
             catch(PDOException $err) {
@@ -103,24 +108,19 @@
 
         function creneauxDispo($list) {
             $length = count($list);
-            $creneauxDispo = array(10 - $length);
-            for ($j=0; $j< 10-$length; $j++) {
-                $bool = true;
-                $value = $j + 9;
-
-                for ($i = 0; $i<$length; $i++) {
-                    if ($list[i]['heure'] == $value)
-                        $bool = false;
+            $i = 0;
+            for ($x = 9; $x < 19; $x++) {
+                if ($i < $length && (int)$list[$i]['heure2'] == $x) {
+                    $i++;
                 }
-
-                if ($bool)
-                    $creneauxDispo[j] = $value;
+                else {
+                    $creneauxDispo[] = $x;
+                }
             }
+            return $creneauxDispo;
         }
     }
     Connexion::initConnexion();
     $a = new Modele_reservation();
     $a->creneauxReserve('20220120', 'B112');
-    // SELECT count(idreserv) FROM reservation WHERE date = '20220120' and numerosalle = 'B112' 
-
 ?>
