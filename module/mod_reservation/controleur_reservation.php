@@ -45,7 +45,7 @@
 			}
 
 			function dispoSalle() {
-				$this->model->listSalleDispo();
+				$this->model->salleDispo();
 			}
 
 			function dispoCreneaux() {
