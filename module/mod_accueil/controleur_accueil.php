@@ -1,7 +1,7 @@
 <?php
-		include_once 'modele_accueil.php';
-		include_once 'vue_accueil.php';
-		
+
+	require_once("./module/mod_accueil/modele_acceuil.php");
+	require_once("./module/mod_accueil/vue_acceuil.php");
 		class Controleur_accueil {
 			private $modele;
 			public $vue;
@@ -11,7 +11,7 @@
 				$this->modele = new Modele_accueil();
 				$this->vue = new Vue_accueil();
 			}
-	
+
 			function menu() {
 				$this->vue->menu();
 			}

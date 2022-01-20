@@ -10,19 +10,30 @@ Class Controleur_connexion{
   function __construct(){
     $this->modele=new Modele_connexion();
     $this->vue=new Vue_connexion();
-    isset($_GET['action']) ? $this->action=$_GET['action'] : false;
+    isset($_GET['action']) ? $this->action=$_GET['action'] : $this->action="login";
   }
   // Init new componnent
   function init(){
-    if(!isset($this->action))
-    $this->vue->login_form();
-    //   $this->vue->signin_form();
-    else if($this->action=="login")
-      $this->login();
-    else if($this->action=="signin")
-      $this->signin();
-    else
-      echo('404 not found');
+    switch ($this->action) {
+      case 'login':
+          $this->vue->login_form();
+        break;
+      case 'signin':
+          $this->vue->signin_form();
+        break;
+      case 'loginSubmit':
+          $this->login();
+        break;
+      case 'signinSubmit':
+          $this->signin();
+        break;
+      case 'refresh':
+          $this->refresh();
+        break;
+      default:
+        echo('404 not found');
+        break;
+    }
   }
 
   function login(){
@@ -38,6 +49,9 @@ Class Controleur_connexion{
     !array_key_exists("lastname",$_POST) ? exit : $lastname=$_POST['lastname'];
     !array_key_exists("role",$_POST) ? $role="user" : $role=$_POST['role'];
     $this->modele->signin($username, $password,$firstname,$lastname,$role);
+  }
+  function refresh(){
+    $this->modele->refresh();
   }
 
 }

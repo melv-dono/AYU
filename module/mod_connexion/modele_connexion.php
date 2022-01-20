@@ -2,7 +2,7 @@
 
 require_once('./db.php');
 Class Modele_connexion extends DB{
- 
+
   function insertSession($username,$password){
       try{
         // Select if exist user in tbl=User
@@ -18,8 +18,8 @@ Class Modele_connexion extends DB{
         // Verify correct password
         !password_verify($password,$returned_Password_Hash) ? $this->sendError() : false;
         // Génerate unique tokens
-        $access_token=base64_encode(bin2hex(date('Y-m-d h:m:s').openssl_random_pseudo_bytes(24)));
-        $refresh_token=base64_encode(bin2hex(date('Y-m-d h:m:s').openssl_random_pseudo_bytes(24)));
+        $access_token=base64_encode(date('Y-m-d h:m:s').openssl_random_pseudo_bytes(24));
+        $refresh_token=base64_encode(date('Y-m-d h:m:s').openssl_random_pseudo_bytes(24));
         $access_token_expiry=1800;
         $refresh_token_expiry=86400;
         //
@@ -31,9 +31,11 @@ Class Modele_connexion extends DB{
         $InsNewSession->bindParam(":accesstokenexpiry", $access_token_expiry, PDO::PARAM_INT);
         $InsNewSession->bindParam(":refreshtokenexpiry", $refresh_token_expiry, PDO::PARAM_INT);
         $InsNewSession->execute();
-        if($InsNewSession->rowCount()>1) {
-          $_SESSION[access_token]=$access_token;
-          $_SESSION[refresh_token]=$refresh_token;
+        // echo(date('Y-m-d h:i:s'));
+        $InsNewSession->debugDumpParams();
+        if($InsNewSession->rowCount()>0) {
+          $_SESSION["access_token"]=$access_token;
+          $_SESSION["refresh_token"]=$refresh_token;
           return 1;
         }
         return -1;
@@ -63,9 +65,10 @@ Class Modele_connexion extends DB{
       error_log($err);
     }
   }
-  
+
   function refresh(){
-    //Check if access token and refresh token are in the same row 
+    var_dump($_SESSION);
+    //Check if access token and refresh token are in the same row
     $old_access_token=$_SESSION["access_token"];
     $old_refresh_token=$_SESSION["refresh_token"];
     $new_access_token=base64_encode(bin2hex(date('Y-m-d h:m:s').openssl_random_pseudo_bytes(24)));
@@ -75,15 +78,15 @@ Class Modele_connexion extends DB{
     try{
         //SELECT session from specified access_token
         $UpdSession=parent::$db->prepare(
-        "UPDATE 
-          session 
-        SET 
+        "UPDATE
+          session
+        SET
           accesstoken=:access_token,refreshtoken=:refresh_token,
           accesstokenexpiry=date_add(NOW(), INTERVAL :accesstokenexpiry SECOND),
           refreshtokenexpiry=date_add(NOW(), INTERVAL :refreshtokenexpiry SECOND)
         WHERE
           accesstoken=:old_access_token AND
-          refreshtoken=:old_refresh_token 
+          refreshtoken=:old_refresh_token
         ");
         //bind all params
         $UpdSession->bindparam(":access_token", $new_access_token, PDO::PARAM_STR);
