@@ -14,7 +14,7 @@
 			}
 
 			function mettreMenu(){
-				//$this->vue->menu();
+				$this->vue->menu();
 			}
 
 			/*function afficherListeLampesSalle($numSalle) {

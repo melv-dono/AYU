@@ -4,6 +4,7 @@
     class Mod_lampe {
         private $controleur;
         private $action;
+        private $etat;
         public function __construct() {
             $this->controleur=new Controleur_lampe();
             if(!isset($_GET['action'])){
@@ -15,6 +16,7 @@
             switch($this->action){
                 case 'index':
                     $this->controleur->mettreMenu();
+                    break;
                 case 'allumer':
                     $this->controleur->allumer();
                     //ajouter en paramètre le num de salle de allumer()

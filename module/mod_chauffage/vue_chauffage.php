@@ -6,7 +6,7 @@
             <main>
             <div style="text-align:center">
                 <br>
-                <input type="range" id="temperature" name="temperature" min="15" max="25" step="0.5"><br>
+                <input type="range" id="temperature" name="temperature" min="15" max="25" step="1"><br>
                 <output></output>
 
                 <script>
