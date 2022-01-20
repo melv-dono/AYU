@@ -20,7 +20,7 @@ Class Modele_connexion extends DB{
         // Génerate unique tokens
         $access_token=base64_encode(date('Y-m-d h:m:s').openssl_random_pseudo_bytes(24));
         $refresh_token=base64_encode(date('Y-m-d h:m:s').openssl_random_pseudo_bytes(24));
-        $access_token_expiry=1800;
+        $access_token_expiry=11800;
         $refresh_token_expiry=86400;
         //
         $InsNewSession=parent::$db->prepare("INSERT INTO session (userid,accesstoken,accesstokenexpiry,refreshtoken,refreshtokenexpiry)
@@ -73,7 +73,7 @@ Class Modele_connexion extends DB{
     $old_refresh_token=$_SESSION["refresh_token"];
     $new_access_token=base64_encode(bin2hex(date('Y-m-d h:m:s').openssl_random_pseudo_bytes(24)));
     $new_refresh_token=base64_encode(bin2hex(date('Y-m-d h:m:s').openssl_random_pseudo_bytes(24)));
-    $new_access_token_expiry=1800;
+    $new_access_token_expiry=11800;
     $new_refresh_token_expiry=86400;
     try{
         //SELECT session from specified access_token
