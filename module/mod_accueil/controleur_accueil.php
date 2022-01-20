@@ -1,7 +1,7 @@
 <?php
 
-	require_once("module\mod_accueil\modele_accueil.php");
-	require_once("module\mod_accueil\\vue_accueil.php");
+	require_once("module/mod_accueil/modele_accueil.php");
+	require_once("module/mod_accueil/vue_accueil.php");
 		class Controleur_accueil {
 			private $modele;
 			public $vue;

@@ -1,5 +1,5 @@
 <?php
-require_once("module\mod_accueil\controleur_accueil.php");
+require_once("module/mod_accueil/controleur_accueil.php");
     class Mod_accueil {
       private $controleur;
         public function __construct() {
