@@ -1,7 +1,7 @@
 <?php
 
-	require_once("./module/mod_accueil/modele_acceuil.php");
-	require_once("./module/mod_accueil/vue_acceuil.php");
+	require_once("module\mod_accueil\modele_accueil.php");
+	require_once("module\mod_accueil\\vue_accueil.php");
 		class Controleur_accueil {
 			private $modele;
 			public $vue;
@@ -12,8 +12,10 @@
 				$this->vue = new Vue_accueil();
 			}
 
-			function menu() {
-				$this->vue->menu();
+			function init() {
+				$modules=$this->modele->getAvailableModules();
+				$reservations=$this->modele->getReservation();
+				$this->vue->display($modules,$reservations);
 			}
 		}
 	?>

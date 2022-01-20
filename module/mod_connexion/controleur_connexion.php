@@ -37,17 +37,17 @@ Class Controleur_connexion{
   }
 
   function login(){
-    print_r($_POST);
-    !array_key_exists("username",$_POST) ? exit : false;
-    !array_key_exists("password",$_POST) ? exit : false;
-    $this->modele->insertSession($_POST['username'],$_POST['password']);
+    !array_key_exists("username",$_POST) ? exit : $username=htmlspecialchars($_POST['username']);
+    !array_key_exists("password",$_POST) ? exit : $password=htmlspecialchars($_POST['password']);
+    $this->modele->insertSession($username,$password);
+    header("Location:index.php");
   }
   function signin(){
-    !array_key_exists("username",$_POST) ? exit : $username=$_POST['username'];
-    !array_key_exists("password",$_POST) ? exit : $password=$_POST['password'];
-    !array_key_exists("firstname",$_POST) ? exit : $firstname=$_POST['firstname'];
-    !array_key_exists("lastname",$_POST) ? exit : $lastname=$_POST['lastname'];
-    !array_key_exists("role",$_POST) ? $role="user" : $role=$_POST['role'];
+    !array_key_exists("username",$_POST) ? exit : $username=htmlspecialchars($_POST['username']);
+    !array_key_exists("password",$_POST) ? exit : $password=htmlspecialchars($_POST['password']);
+    !array_key_exists("firstname",$_POST) ? exit : $firstname=htmlspecialchars($_POST['firstname']);
+    !array_key_exists("lastname",$_POST) ? exit : $lastname=htmlspecialchars($_POST['lastname']);
+    !array_key_exists("role",$_POST) ? $role="user" : $role=htmlspecialchars($_POST['role']);
     $this->modele->signin($username, $password,$firstname,$lastname,$role);
   }
   function refresh(){

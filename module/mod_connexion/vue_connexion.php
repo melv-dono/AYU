@@ -27,7 +27,7 @@ Class Vue_connexion{
     ');
   }
   function login_form(){
-    echo '
+    echo ('
       <link rel="stylesheet" href="./module/mod_connexion/styles/style.css">
       <main>
         <h2>Login</h2>
@@ -43,7 +43,7 @@ Class Vue_connexion{
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </main>
-    ';
+    ');
   }
 }
 ?>
