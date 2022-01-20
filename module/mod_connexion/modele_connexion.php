@@ -18,8 +18,8 @@ Class Modele_connexion extends DB{
         // Verify correct password
         !password_verify($password,$returned_Password_Hash) ? $this->sendError() : false;
         // Génerate unique tokens
-        $access_token=base64_encode(date('Y-m-d h:m:s').openssl_random_pseudo_bytes(24));
-        $refresh_token=base64_encode(date('Y-m-d h:m:s').openssl_random_pseudo_bytes(24));
+        $access_token=base64_encode(date('Y-m-d h:i:s').openssl_random_pseudo_bytes(24));
+        $refresh_token=base64_encode(date('Y-m-d h:i:s').openssl_random_pseudo_bytes(24));
         $access_token_expiry=11800;
         $refresh_token_expiry=86400;
         //
@@ -71,8 +71,8 @@ Class Modele_connexion extends DB{
     //Check if access token and refresh token are in the same row
     $old_access_token=$_SESSION["access_token"];
     $old_refresh_token=$_SESSION["refresh_token"];
-    $new_access_token=base64_encode(bin2hex(date('Y-m-d h:m:s').openssl_random_pseudo_bytes(24)));
-    $new_refresh_token=base64_encode(bin2hex(date('Y-m-d h:m:s').openssl_random_pseudo_bytes(24)));
+    $new_access_token=base64_encode(date('Y-m-d h:i:s').openssl_random_pseudo_bytes(24));
+    $new_refresh_token=base64_encode(date('Y-m-d h:i:s').openssl_random_pseudo_bytes(24));
     $new_access_token_expiry=11800;
     $new_refresh_token_expiry=86400;
     try{
