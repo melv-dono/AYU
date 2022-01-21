@@ -3,8 +3,8 @@ require_once("db.php");
     class Modele_accueil extends DB {
       //  Get list module disponnible
       function getAvailableModules(){
-          $availableModule=["mod_lampe","mod_reservation","mod_help","mod_porte","mod_chauffage"];
-          if ($this->getRole()) $availableModule[]="mod_admin";
+          $availableModule=["Home","Reservation","Lumiere","Porte","Chauffage","Help"];
+          if ($this->getRole()) $availableModule[]="Admin";
           return $availableModule;
       }
 

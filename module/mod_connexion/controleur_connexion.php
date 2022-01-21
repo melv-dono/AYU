@@ -49,8 +49,11 @@ Class Controleur_connexion{
     !array_key_exists("lastname",$_POST) ? exit : $lastname=htmlspecialchars($_POST['lastname']);
     !array_key_exists("role",$_POST) ? $role="user" : $role=htmlspecialchars($_POST['role']);
     $this->modele->signin($username, $password,$firstname,$lastname,$role);
+    header("Location:index.php");
   }
   function refresh(){
+    if(!isset($_SESSION["access_token"]))
+        header("Location:index.php");
     $this->modele->refresh();
   }
 

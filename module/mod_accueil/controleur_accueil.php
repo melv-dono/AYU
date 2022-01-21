@@ -15,7 +15,8 @@
 			function init() {
 				$modules=$this->modele->getAvailableModules();
 				$reservations=$this->modele->getReservation();
-				$this->vue->display($modules,$reservations);
+				$details=$this->modele->getDetails();
+				$this->vue->display($modules,$reservations,$details);
 			}
 		}
 	?>

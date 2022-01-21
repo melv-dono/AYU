@@ -1,79 +1,77 @@
 <?php
     class Vue_accueil {
 
-        function display($modules, $reservations) {
+        function display($modules, $reservations,$details) {
           echo('<link rel="stylesheet" href="./module/mod_accueil/styles/styles.css">');
           $this->shownav($modules);
-          $this->showMain($reservations);
+          $this->showMain($reservations,$details);
         }
 
         function shownav($modules){
           $str="";
           foreach ($modules as $key => $value) {
-            $str.='<li class="list-group-item"><a href="">'.$value.'</a></li>';
+            if($value==="Home")
+              $str.='<li class="selected"><a href="">'.$value.'</a></li>';
+            else
+              $str.='<li class=""><a href="">'.$value.'</a></li>';
           }
           echo('
-          <nav>
-            <img src="resources\img\image.png" width="120px"></img>
-            <ul id="nav" class="list-group">
+          <nav id="navBar">
+            <div class="profile">
+              <img src="resources/img/image.png" alt="profilePiciture" class="profilePicture" />
+              <p class="username">username</p>
+            </div>
+            <ul>
               '.
-                $str
+              $str
               .'
             </ul>
+            <button class="logout" id="logout">Logout</button>
           </nav>
           ');
         }
 
-        function showReservationDetails($reservation){
-          $str="";
-          foreach ($reservation as $key => $value) {
-          $str.='<p>'.$key.' : '.$value.'</p>';
-          }
+        function oneRowReservation($reservation){
           return('
-            <div>
-              '.
-              $str
-              .'
-            </div>
+            <tr><td>'.date('Y/m/d',strtotime($reservation["dateD"])).'</td><td>'.date('H:i:s',strtotime($reservation["heure"])).'</td><td>'.$reservation['numeroSalle'].'</td></tr>
           ');
         }
+
         function showReservation($reservations){
-          $str='<li class="list-group-item">Vous n\'avez pas de reservations</li>';
-          if(is_array($reservations)){
-            $str='';
-            foreach ($reservations as $key => $reservation) {
-              $str.='<li class="list-group-item" id="reservation'.$key.'">'.$this->showReservationDetails($reservation).'</li>';
+          if(!is_array($reservations))
+            return ('
+              <span>😭Vous n\'avez pas de reservation</span>
+              <button class="addReservation">👉Ajouter</button>
+              ');
+          else{
+            $tbodystr='';
+            foreach ($reservations as $key => $value) {
+              $tbodystr.=$this->oneRowReservation($value);
             }
+            return('
+              <table class="table table-dark table-hover">
+                <thead>
+                  <th scope="col">Date</th>
+                  <th scope="col">Heure</th>
+                  <th scope="col">Numero de salle</th>
+                </thead>
+                <tbody>
+                  '.$tbodystr.'
+                </tbody>
+              </table>
+            ');
           }
-          return('
-            <ul class="list-group">
-              '.
-                $str
-              .'
-            </ul>
-            <button type="button" class="btn btn-outline-primary">ADD RESERVATION</button>
-          ');
         }
-        function showMain($reservations){
+
+        function showMain($reservations,$details){
           echo('
-          <main>
-            <div class="head"></div>
             <div class="app">
-              <div class="profile">
-                <img id="profilePicture"src="image.jpg" width="150px" height="150px"></img>
-                <div class="description">
-                  <p id="username">Username : T1masv</p>
-                  <p id="firstname">Firstname : Timotei</p>
-                  <p id="lastname">Lastname :Gerante</p>
-                  <p id="role">Role : ADMIN</p>
-                </div>
-              </div>
+            <h3>Bonjour '.$details['nomutilisateur'].' 👋</h3>
               <div class="reservation">
               '.
               $this->showReservation($reservations)
               .'
               </div>
-              <div class="inProgress"></div>
             </div>
           </main>
           ');
