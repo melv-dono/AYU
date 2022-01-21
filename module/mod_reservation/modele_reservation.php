@@ -15,31 +15,32 @@
             // $this->fin = htmlspecialchars($_GET['fin']); // facultatif
         }
 
-        public function reserver($salle, $date, $heure, $duree) {
+        public function reserver($date, $heure, $salle) {
             // Attention modification BD
             $success=0;
             //$dureeMin = new DateInterval('PT30M'); // déjà gérer grâce à la valeur par défaut du input
-            if (!isset($duree) && !isset($date))
-                return $success;
-            else {
-                $debutResa = new DateTime($date);
-            }
+            // if (!isset($duree) && !isset($date))
+            //     return $success;
+            // else {
+            //     $debutResa = new DateTime($date);
+            // }
             //isset($this->debut) ? $debutResa = new DateTime() : $debutResa = $this->debut;
             //isset($this->fin) || ($this->fin->diff($debutResa)) < 30 ? $finResa = $debutResa->add($dureeMin) : $finResa =  $this->fin;  
 
-            $ReqIdResa = $db->prepare('SELECT idReserv FROM reservation WHERE numerosalle=? and debutreserv = ?;');
-            $ReqIdResa->execute(array($salle), array($debutResa));
-            $IdResa = $ReqIdResa->fetch(PDO::FETCH_OBJ);
+            // $ReqIdResa = $db->prepare('SELECT idReserv FROM reservation WHERE numerosalle=? and debutreserv = ?;');
+            // $ReqIdResa->execute(array($salle), array($debutResa));
+            // $IdResa = $ReqIdResa->fetch(PDO::FETCH_OBJ);
 
             if (!isset($IdResaesa)) {
                 //TO DO : Vérification du userId avec le token avant la requête
                 // $userId = getUserId();
                 $userId = 1;
-                $InsResa = $db->prepare('INSERT INTO reservation VALUES (DEFAULT, ?, ?, ?, ?);');
-                $InsResa->execute(array($userId), array($debutResa), array($finResa), array($this->salle));
+                $InsResa = parent::$db->prepare('INSERT INTO reservation VALUES (DEFAULT, ?, ?, ?, ?);');
+                $InsResa->execute(array($userId, $date, $heure, $salle));
                 $rowCount=$InsResa->rowCount();
                 $rowCount<1 ? $success=0 : $success=1;
             }
+            echo $success;
             return $success;
         }
 
@@ -73,9 +74,9 @@
 
         // Liste de toutes salles
         function sallesDispo() {
-            $ReqSallesDispo = $db->prepare('SELECT numerosalle FROM salle;');
+            $ReqSallesDispo = parent::$db->prepare('SELECT numerosalle FROM salle;');
             $ReqSallesDispo->execute();
-            $SalleDispo = $ReqSallesDispo->fech(PDO::FETCH_ASSOC);
+            $SalleDispo = $ReqSallesDispo->fetch(PDO::FETCH_ASSOC);            
             return $SalleDispo;
         }
 
@@ -93,7 +94,7 @@
                     $ReqListCreneaux->execute(array($date, $salle));
                     $ListCreneaux = $ReqListCreneaux->fetchAll(PDO::FETCH_ASSOC);
                     $creneauxDispo = $this->creneauxDispo($ListCreneaux);
-                    echo "This is the first available : " . $creneauxDispo[0];
+                    // echo "This is the first available : " . $creneauxDispo[0];
                     return $creneauxDispo;
                 }
                 // Aucune réservation dispo
@@ -121,6 +122,8 @@
         }
     }
     Connexion::initConnexion();
-    $a = new Modele_reservation();
-    $a->creneauxReserve('20220120', 'B112');
+    // $a = new Modele_reservation();
+    // $a->reserver('2022-01-28 00:00:00', '2022-01-28 12:00:00', 'B112');
+    // $a->creneauxReserve('20220120', 'B112');
+    // var_dump(date("Y-m-d"));
 ?>

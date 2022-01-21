@@ -1,64 +1,90 @@
 <?php
-		include_once 'modele_reservation.php';
-		include_once 'vue_reservation.php';
-		
-		class Controleur_reservation {
-			private $modele;
-			public $vue;
-			private $action;
-
-			function init() {
-				$this->reservation = htmlspecialchars($_POST['reservation']);
-				if (!isset($_POST['reservation'])) {
-					$this->reservation = "affiche_form";
-				}
-
-				switch($this->reservation) {
-					case "affiche_form":
-						$this->ctrl->affiche_form();
-						break;
-					case "reserver":
-						$this->ctrl->reserver();
-						break;
-					default:
-						echo "Erreur dans le module de réservation au niveau de la réservation";
-						break;
-				}
-			}
-
-			public function __construct() {
-				$this->modele = new Modele_reservation();
-				$this->vue = new Vue_reservation();
-			}
+	require_once 'modele_reservation.php';
+	require_once 'vue_reservation.php';
+    require_once 'temp_Connexion.php';
 	
-			function menu() {
-				$this->vue->menu();
+	class Controleur_reservation {
+		private $modele;
+		public $vue;
+		private $action;
+		private $salle;
+		private $heure;
+		private $date;
+
+				public function __construct() {
+			$this->modele = new Modele_reservation();
+			$this->vue = new Vue_reservation();
+		}
+
+		function init() {
+
+			$this->action = htmlspecialchars($_GET['action']);
+			if (!isset($_GET['action'])) {
+				$this->action = "défaut";
 			}
 
-			function reserver() {
-				$salle = htmlspecialchars($_POST['salle']);
-				$duree = htmlspecialchars($_POST['duree']);
-				$date = htmlspecialchars($_POST['date']);
-				$heure = htmlspecialchars($_POST['heure']);
-				
-				$this->modele->reserver($salle, $date, $heure, $duree);
+			switch($this->action) {
+				case "défaut":
+					$this->display();
+					break;
+				case "créneaux":
+					$this->dispoCreneaux();
+					break;
+				case "réserver":
+					$this->reserver();
+					break;
+				default:
+					echo "Erreur dans le module de réservation au niveau de la réservation";
+					break;
 			}
+		}
 
-			function dispoSalle() {
-				$this->model->salleDispo();
+		// Surement à supprimer
+		function reserver() {
+			$heure = htmlspecialchars($_POST['heure']);
+			$date = $this->date . " 00:00:00";
+			for ($i = 0; $i < count($heure); $i++) {
+				$heure2 = $this->date . " " . $heure[$i] . ":00:00";
+				echo $heure2;
+				// $this->modele->reserver($date, $heure2, $this->salle);
 			}
+			
+		}
 
-			function dispoCreneaux() {
-				$ok = $this->modele->creneauxDispo($date, $salle);
-				if ($ok != 6)
-					$this->vue->afficheCreneau($ok);
+		function dispoSalle() {
+			$this->model->salleDispo();
+		}
+
+		function dispoCreneaux() {	
+			$this->salle = htmlspecialchars($_POST['salle']);
+			$this->date = htmlspecialchars($_POST['date']);
+
+			if (!isset($this->date)) {
+				// La vue dois afficher une erreure ou jsp
+				echo "choisir une date \n";
+			}
+			else {
+				$crenaux = $this->modele->creneauxReserve($this->date, $this->salle);
+				if (count($crenaux) > 0)
+					$this->vue->afficheCreneau($crenaux);
 				else
 					$this->vue->creanauIndispo();
 			}
-
-			function affiche_form(){
-				$salles = $this->dispoSalle();
-				$this->vue->affiche_form($salles);
-			}
 		}
+
+		// Surement à supprimer
+		function affiche_form(){
+			$salles = $this->dispoSalle();
+			$this->vue->affiche_form($salles);
+		}
+
+		// Nom à changer
+		function display() {
+			$salles = $this->modele->sallesDispo();
+			$this->vue->choixSalle($salles);
+		}
+	}
+	Connexion::initConnexion();
+	$ctl = new Controleur_reservation();
+	$ctl->init();
 ?>
