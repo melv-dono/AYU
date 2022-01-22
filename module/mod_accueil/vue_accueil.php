@@ -3,11 +3,11 @@
 
         function display($modules, $reservations,$details) {
           echo('<link rel="stylesheet" href="./module/mod_accueil/styles/styles.css">');
-          $this->shownav($modules);
+          $this->shownav($modules,$details);
           $this->showMain($reservations,$details);
         }
 
-        function shownav($modules){
+        function shownav($modules,$details){
           $str="";
           foreach ($modules as $key => $value) {
             if($value==="Home")
@@ -19,7 +19,7 @@
           <nav id="navBar">
             <div class="profile">
               <img src="resources/img/image.png" alt="profilePiciture" class="profilePicture" />
-              <p class="username">username</p>
+              <p class="username">'.$details["nomUtilisateur"].'</p>
             </div>
             <ul>
               '.
