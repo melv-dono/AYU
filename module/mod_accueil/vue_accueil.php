@@ -5,6 +5,7 @@
           echo('<link rel="stylesheet" href="./module/mod_accueil/styles/styles.css">');
           $this->shownav($modules,$details);
           $this->showMain($reservations,$details);
+          $this->addScript(["logout"]);
         }
 
         function shownav($modules,$details){
@@ -75,6 +76,12 @@
             </div>
           </main>
           ');
+        }
+
+        function addScript($scripts){
+          foreach ($scripts as $key => $value) {
+            echo ('<script type=module src="resources/scripts/'.$value.'.js"></script>');
+          }
         }
     }
 ?>

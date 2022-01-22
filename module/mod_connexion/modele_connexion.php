@@ -113,6 +113,24 @@ Class Modele_connexion extends DB{
     echo $error;
     exit(-1);
   }
+  function logout(){
+    $access_token=$_SESSION["access_token"];
+    try{
+      $DelSession=parent::$db->prepare("DELETE FROM session WHERE accesstoken=:access_token");
+      $DelSession->bindParam("access_token",$access_token,PDO::PARAM_STR);
+      $DelSession->execute();
+      if($DelSession->rowCount()>0){
+        session_destroy();
+        header("bon",true,200);
+      }
+      else{
+        return -1;
+      }
+    }catch(PDOException $err){
+      echo("Database error : ". $err);
+      return -1;
+    }
+  }
 
   function checkIfExist($username){
     try{

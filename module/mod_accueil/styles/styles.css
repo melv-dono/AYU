@@ -14,6 +14,7 @@ nav {
 }
 
 .profile {
+  margin-top: 10px;
   display: flex;
   grid-row: 1;
   overflow: hidden;
@@ -26,7 +27,7 @@ nav {
 }
 .username {
   margin-top: 15px;
-  margin-left: 5px;
+  margin-left: 20px;
   font-weight: bold;
 }
 ul {
@@ -75,6 +76,7 @@ li {
   background: #252531;
   border-radius: 10px;
 }
+
 .selected {
   border-bottom: solid #e1ab4f 5px;
   border-radius: 5px;
@@ -96,7 +98,7 @@ li {
   border-radius: 15px;
 }
 
-a {
+a{
   text-decoration: none;
   color:#fff;
 }

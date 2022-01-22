@@ -4,7 +4,7 @@ require_once("db.php");
       //  Get list module disponnible
       function getAvailableModules(){
           $availableModule=["Home","Reservation","Lumiere","Porte","Chauffage","Help"];
-          if ($this->getRole()) $availableModule[]="Admin";
+          if ($this->getRole()=="admin") $availableModule[]="Admin";
           return $availableModule;
       }
 
@@ -46,7 +46,7 @@ require_once("db.php");
           $ReqUsrRole->bindparam("access_token",$access_token,PDO::PARAM_STR);
           $ReqUsrRole->execute();
           if($ReqUsrRole->rowCount()>0)
-            return $ReqUsrRole->fetch(PDO::FETCH_ASSOC);
+            return $ReqUsrRole->fetch(PDO::FETCH_ASSOC)["role"];
           else
             return -1;
         }catch(PDOException $err){

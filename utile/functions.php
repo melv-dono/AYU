@@ -37,7 +37,6 @@ class Functions extends DB{
       exit;
     }
   }
-
   function refresh(){
     //Check if access token and refresh token are in the same row
     $old_access_token=$_SESSION["access_token"];
@@ -79,7 +78,6 @@ class Functions extends DB{
       return -1;
     }
   }
-
   function verifConnexion($access_token,$refresh_token){
     $verifAT=$this->verifValidAccessToken($access_token);
     $verifRT=$this->verifValidRefreshToken($refresh_token);
@@ -87,11 +85,10 @@ class Functions extends DB{
     if($verifAT==2)
       return;
     else if($verifAT==1&&$verifRT==2){
-      $this->refresh();
+      header('location:index.php?module=Connexion&action=refresh');
     }
     else{
-      unset($_SESSION['access_token']);
-      unset($_SESSION['refresh_token']);
+      session_destroy();
       header('location:index.php?action=login');
     }
 

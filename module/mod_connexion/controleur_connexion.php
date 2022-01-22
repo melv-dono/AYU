@@ -18,7 +18,7 @@ Class Controleur_connexion{
       case 'login':
           $this->vue->login_form();
         break;
-      case 'signin':
+        case 'signin':
           $this->vue->signin_form();
         break;
       case 'loginSubmit':
@@ -29,6 +29,9 @@ Class Controleur_connexion{
         break;
       case 'refresh':
           $this->refresh();
+        break;
+      case 'logout':
+          $this->logout();
         break;
       default:
         echo('404 not found');
@@ -56,6 +59,9 @@ Class Controleur_connexion{
         header("Location:index.php");
     $this->modele->refresh();
     header("Location:index.php");
+  }
+  function logout(){
+    $this->modele->logout();
   }
 
 }
