@@ -19,7 +19,7 @@
           <nav id="navBar">
             <div class="profile">
               <img src="resources/img/image.png" alt="profilePiciture" class="profilePicture" />
-              <p class="username">'.$details["nomUtilisateur"].'</p>
+              <p class="username">'.$details["nomutilisateur"].'</p>
             </div>
             <ul>
               '.
