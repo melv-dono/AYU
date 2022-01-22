@@ -1,0 +1,19 @@
+/*------ body ------*/
+
+body{
+    margin: 0 0;
+}
+
+main {
+    /*display: grid;
+    grid-template-columns: auto auto;*/
+	margin: 0px 0px;
+    height: 100%;
+    background-color: #191a21;
+    color: white;
+}
+
+div{
+    display: block;
+    padding: 10px;
+}
