@@ -17,10 +17,6 @@
 				$this->vue->menu();
 			}
 
-			/*function afficherListeLampesSalle($numSalle) {
-				$this->modele->getListeLampesSalle($numSalle);
-			}*/
-
 			function allumer(){
 				$allumer=1;
 				//$getNumSalle=$this->modele->getNumSalle();
@@ -35,6 +31,10 @@
 				//$this->modele->allumer($getNumSalle, $allumer);
 				$this->modele->allumer($allumer);
 				$this->vue->menu();
+			}
+
+			function setLuminosite($lum){
+				$this->modele->setLuminosite($lum);
 			}
 		}
 	?>

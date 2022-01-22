@@ -1,56 +1,53 @@
 /*------ body ------*/
 
-body {
-	margin:auto;
+body{
+    margin: 0 0;
+}
+
+main {
+    display: grid;
+    grid-template-columns: auto auto;
+	margin: 0px 0px;
     height: 100%;
-    background-color: red;
+    background-color: #191a21;
 }
 
-/*------ nav ------*/
-nav {
-    background-color: blue;
-    height: 50%;
-    width: 50%;
+.gauche{
+    grid: 1;
+    margin: auto;
 }
 
-nav a {
-    border: solid blue 1px;
-
+a{
+    display: block;
+    margin: 10px;
+    text-align: center;
+    width: 110px;
+    height: 50px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px;
+    background-color: #3f4ae4;
+    border-radius: 15px;
+    line-height: 40px;
+    text-decoration: none;
 }
 
-nav div {
-    border: solid blue 1px;
-
-}
-/*------ article ------*/
-article {
-    border: solid blue 1px;
+a:hover{
+    color: #e1ab4f;
 }
 
-article div {
-    border: solid blue 1px;
-
+.droite{
+    grid: 2;
+    margin: auto;
+    color: white;
+    font-weight: bold;
 }
 
-article button {
-    border: solid blue 1px;
-
+.lumi{
+    margin: 10px;
 }
 
-/*------ section ------*/
-
-section {
-    border: solid blue 1px;
-}
-
-
-
-
-footer {
-    border: solid blue 1px;
-	margin-top: 20px;
-	text-align: center;
-	font-size: small;
-	font-style: oblique;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+.col{
+    margin: 10px;
 }

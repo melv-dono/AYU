@@ -5,13 +5,6 @@
             
         }
 
-        /*public function getListeLampesSalle($numSalle){
-            $selectRequete = parent::$db->prepare("SELECT * FROM equipement where idType = ? and numerosalle = ?;");
-            $selectRequete->execute(array(1, $numSalle));
-            $result=$selectRequete->fetchAll(PDO::FETCH_ASSOC);
-            return $result;
-        }*/
-
         //public function allumer($numSalle, $allumer){
         public function allumer($allumer){
             if($allumer == 1){
@@ -36,6 +29,14 @@
             $result=$selectRequete->fechAll(PDO::FETCH_ASSOC);
             echo $result;
         }*/
+        
+        //public function setLuminosite($lum,$numSalle){
+        public function setLuminosite($lum){
+            $selectRequete = parent::$db->prepare("UPDATE caracteristique SET valeur=? WHERE idcaracteristique=?;");
+                //$selectRequete = parent::$db->prepare("UPDATE caracteristique SET valeur=? WHERE idcaracteristique=? AND numerosalle=?;");
+                $selectRequete->execute(array($lum,"1"));
+                //$selectRequete->execute(array($lum,"1",$numSalle));
+        }
 
         public function getNumSalle(){
             $selectRequete=parent::$db->prepare("SELECT numerosalle FROM reservation where userid=?;");

@@ -19,15 +19,10 @@
                     break;
                 case 'allumer':
                     $this->controleur->allumer();
-                    //ajouter en paramètre le num de salle de allumer()
                     break;
                 case 'eteindre':
                     $this->controleur->eteindre();
                     break;
-                /*case 'listeLampes':
-                    $numSalle="B112";
-                    $this->controleur->afficherListeLampesSalle($numSalle);
-                    break;*/
             }
         }
     }
