@@ -42,15 +42,15 @@
           ';
       }
 
-      function afficheCreneau($creneaux) {
-        echo '<form action="/~melvyn/AYU/module/mod_reservation/controlleur_reservation.php?module=mod_reservation&action=réserver" method="post">';
+      function afficheCreneau($creneaux, $date, $salle) {
+        // echo '<form action="/~melvyn/AYU/module/mod_reservation/controleur_reservation.php?module=mod_reservation&action=réserver&date2=' . $date . '&salle2=' . $salle . '" method="post">';
         
         // Bientôt utiliser la var global pour la limite
         // Attention nous somme dans le cas ou $creneaux est la liste des créneaux déjà réserver 
         // Plus simple serait de prendre la liste inverse pour enlever cette partie de la vue
         for ($i =0; $i<count($creneaux); $i++) {
           $output = $creneaux[$i] . ": 00-" . ($creneaux[$i] + 1) . ":00";
-          echo '<button type="button" name="heure[]" value= ' . $creneaux[$i] . '>' . $output . '</button>';
+          echo '<a class="flash" href="/~melvyn/AYU/module/mod_reservation/controleur_reservation.php?module=mod_reservation&action=réserver&date2=' . $date . '&salle2=' . $salle . '&heure=' . $creneaux[$i] . '"><button type="button" name="" value="">' . $output . '</button></a> ';
           // $currentCreneau = new Datetime();
           // $currentCreneau->setTime($i+9);
           // if ($creneaux[$i] != $currentCreneau) {
@@ -63,11 +63,13 @@
           //     echo '<input type="radio" name="heure' . $i . '" value="' . $currentCreneau .'">';
           // }
         }
+        echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>';
+        echo '<script type="text/javascript" src="flash_reservation.js"></script>';
     
-        echo '
-          <input type="submit" value="Réserver">
-          </form>
-        ';
+        // echo '
+        //   <input type="submit" value="ici">
+        //   </form>
+        // ';
       }
 
       function creanauIndispo() {

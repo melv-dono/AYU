@@ -121,7 +121,7 @@
             return $creneauxDispo;
         }
     }
-    Connexion::initConnexion();
+    // Connexion::initConnexion();
     // $a = new Modele_reservation();
     // $a->reserver('2022-01-28 00:00:00', '2022-01-28 12:00:00', 'B112');
     // $a->creneauxReserve('20220120', 'B112');

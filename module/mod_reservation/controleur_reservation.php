@@ -7,11 +7,8 @@
 		private $modele;
 		public $vue;
 		private $action;
-		private $salle;
-		private $heure;
-		private $date;
 
-				public function __construct() {
+		public function __construct() {
 			$this->modele = new Modele_reservation();
 			$this->vue = new Vue_reservation();
 		}
@@ -41,14 +38,19 @@
 
 		// Surement à supprimer
 		function reserver() {
-			$heure = htmlspecialchars($_POST['heure']);
-			$date = $this->date . " 00:00:00";
-			for ($i = 0; $i < count($heure); $i++) {
-				$heure2 = $this->date . " " . $heure[$i] . ":00:00";
-				echo $heure2;
-				// $this->modele->reserver($date, $heure2, $this->salle);
-			}
-			
+			$heure = htmlspecialchars($_GET['heure']);
+			$date = htmlspecialchars($_GET['date2']);
+			$salle = htmlspecialchars($_GET['salle2']);
+			$date2 = $date . " 00:00:00";
+			$heure2 = $date . " " . $heure . ":00:00";
+			$this->modele->reserver($date2, $heure2, $salle);
+			header('location:/~melvyn/AYU/module/mod_reservation/controleur_reservation.php?module=mod_reservation&action=créneaux');
+
+			// for ($i = 0; $i < count($heure); $i++) {
+			// 	$heure2 = $date . " " . $heure[$i] . ":00:00";
+			// 	echo "Réservation ok";
+			// 	// $this->modele->reserver($date2, $heure2, $salle);
+			// }
 		}
 
 		function dispoSalle() {
@@ -56,17 +58,17 @@
 		}
 
 		function dispoCreneaux() {	
-			$this->salle = htmlspecialchars($_POST['salle']);
-			$this->date = htmlspecialchars($_POST['date']);
+			$salle = htmlspecialchars($_POST['salle']);
+			$date = htmlspecialchars($_POST['date']);
 
-			if (!isset($this->date)) {
+			if (!isset($date)) {
 				// La vue dois afficher une erreure ou jsp
 				echo "choisir une date \n";
 			}
 			else {
-				$crenaux = $this->modele->creneauxReserve($this->date, $this->salle);
+				$crenaux = $this->modele->creneauxReserve($date, $salle);
 				if (count($crenaux) > 0)
-					$this->vue->afficheCreneau($crenaux);
+					$this->vue->afficheCreneau($crenaux, $date, $salle);
 				else
 					$this->vue->creanauIndispo();
 			}
