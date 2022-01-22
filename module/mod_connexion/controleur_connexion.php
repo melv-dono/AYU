@@ -55,6 +55,7 @@ Class Controleur_connexion{
     if(!isset($_SESSION["access_token"]))
         header("Location:index.php");
     $this->modele->refresh();
+    header("Location:index.php");
   }
 
 }

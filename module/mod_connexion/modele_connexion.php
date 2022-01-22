@@ -16,7 +16,7 @@ Class Modele_connexion extends DB{
         $returned_UserId=$UserDetails['userid'];
         $returned_Password_Hash=$UserDetails['motdepasse'];
         // Verify correct password
-        !password_verify($password,$returned_Password_Hash) ? $this->sendError() : false;
+        !password_verify($password,$returned_Password_Hash) ? $this->sendError("not Authorize") : false;
         // Génerate unique tokens
         $access_token=base64_encode(date('Y-m-d h:i:s').openssl_random_pseudo_bytes(24));
         $refresh_token=base64_encode(date('Y-m-d h:i:s').openssl_random_pseudo_bytes(24));

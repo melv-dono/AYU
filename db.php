@@ -1,7 +1,7 @@
 <?php
 class DB{
-    
-  protected static $db; 
+
+  protected static $db;
 
   public static function initConnexion(){
       try {

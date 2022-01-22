@@ -7,11 +7,15 @@
 </head>
 <body>
 <?php
+
+    require_once("utile/functions.php");
+    $function=new Functions;
     session_start();
-    if(isset($_SESSION["access_token"])){
-      require_once("module/mod_accueil/mod_accueil.php");
-      $mod_acceuil=new Mod_accueil();
-      $mod_acceuil->show();
+    if(isset($_SESSION["access_token"])&&$_SESSION['access_token']!=""){
+        $function->verifConnexion($_SESSION["access_token"],$_SESSION["refresh_token"]);
+        require_once("module/mod_accueil/mod_accueil.php");
+        $mod_acceuil=new Mod_accueil();
+        $mod_acceuil->show();
     }
     else {
       require_once("module/mod_connexion/mod_connexion.php");
