@@ -1,7 +1,7 @@
 <?php
-		include_once 'modele_lampe.php';
-		include_once 'vue_lampe.php';
-		
+		include_once DIR_NAME.'modele_lampe.php';
+		include_once DIR_NAME.'vue_lampe.php';
+
 		class Controleur_lampe {
 			private $modele;
 			public $vue;
@@ -14,7 +14,7 @@
 			}
 
 			function mettreMenu(){
-				$this->vue->menu();
+				$this->vue->show();
 			}
 
 			function allumer(){
@@ -22,7 +22,7 @@
 				//$getNumSalle=$this->modele->getNumSalle();
 				//$this->modele->allumer($getNumSalle, $allumer);
 				$this->modele->allumer($allumer);
-				$this->vue->menu();
+				$this->vue->show();
 			}
 
 			function eteindre(){
@@ -30,7 +30,7 @@
 				//$getNumSalle=$this->modele->getNumSalle();
 				//$this->modele->allumer($getNumSalle, $allumer);
 				$this->modele->allumer($allumer);
-				$this->vue->menu();
+				$this->vue->show();
 			}
 
 			function setLuminosite($lum){

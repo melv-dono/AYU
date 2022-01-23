@@ -8,32 +8,19 @@
 </head>
 <body>
 <?php
+session_start();
+$module=isset($_GET["module"]) ? $_GET["module"] : "accueil";
+require("utile/define.php");
+$filePath=DIR_NAME."mod_".$module.".php";
+if(file_exists($filePath)){
+  require_once($filePath);
+  $page=new Mod;
+}
+else{
+  http_response_code(404);
+  die();
+}
 
-    require_once("utile/functions.php");
-    $function=new Functions;
-    session_start();
-    $module=(isset($_GET["module"]))?$_GET["module"]:"";
-    switch ($module) {
-      case 'Connexion':
-        require_once("module/mod_connexion/mod_connexion.php");
-        $mod_connexion=new Mod_connexion();
-        $mod_connexion->display();
-        break;
-      default:
-        if(isset($_SESSION["access_token"])&&$_SESSION['access_token']!=""){
-            $function->verifConnexion($_SESSION["access_token"],$_SESSION["refresh_token"]);
-            require_once("module/mod_accueil/mod_accueil.php");
-            $mod_acceuil=new Mod_accueil();
-            $mod_acceuil->show();
-        }
-        else {
-          require_once("module/mod_connexion/mod_connexion.php");
-          $mod_connexion=new Mod_connexion();
-          $mod_connexion->display();
-        }
-        break;
-    }
-
-?>
+ ?>
 
 </body>

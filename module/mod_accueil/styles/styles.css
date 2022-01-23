@@ -1,73 +1,9 @@
-body {
-  min-height: 100vh;
-  background: #191a21 !important;
-  font-size: 20px !important;
-  display: grid;
-  grid-template-columns: [first] 15% [end];
-  color: #fff !important;
-}
 
-nav {
-  display: grid;
-  grid-template-rows: 8% auto 10%;
-  grid-column: 1;
-}
-
-.profile {
-  margin-top: 10px;
-  display: flex;
-  grid-row: 1;
-  overflow: hidden;
-  border-bottom: solid #222329 2px;
-}
-.profilePicture {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-}
-.username {
-  margin-top: 15px;
-  margin-left: 20px;
-  font-weight: bold;
-}
-ul {
-  grid-row: 2;
-  place-self: center;
-}
-li {
-  all: unset;
-  font-weight: bold;
-  font-size: 25px;
-  display: block;
-  text-align: center;
-}
-
-.logout {
-  margin: auto;
-  align-self: center;
-  all: unset;
-  text-align: center;
-  justify-self: center;
-  width: 110px;
-  height: 50px;
-  color: #fff;
-  font-size: 15px;
-  font-weight: bold;
-  padding: 5px;
-  background-color: #3f4ae4;
-  grid-row: 3;
-  border-radius: 15px;
-}
-.app {
-  display: grid;
-  grid-template-rows: 50% auto;
-  grid-column: 2/2;
-  margin-bottom: 10px;
-}
 .app h3 {
   grid-row: 1;
   place-self: center;
   font-weight: bold;
+  font-size: 50px !important;
 }
 .reservation {
   grid-row: 2;
@@ -77,10 +13,7 @@ li {
   border-radius: 10px;
 }
 
-.selected {
-  border-bottom: solid #e1ab4f 5px;
-  border-radius: 5px;
-}
+
 .addReservation {
   all: unset;
   display: block;
@@ -98,23 +31,12 @@ li {
   border-radius: 15px;
 }
 
-a{
-  text-decoration: none;
-  color:#fff;
-}
 
-
-@media screen and (max-width: 1400px) {
-  body {
-    grid-template-columns: 25% 70%;
+@media screen and (max-width: 700px) {
+  .app h3{
+    font-size:40px !important;
   }
-}
-@media screen and (max-width: 500px) {
-  nav {
-    width: 0;
-    overflow: hidden;
-  }
-  body {
-    grid-template-columns: min-content 100%;
+  .app{
+    padding: 25px;
   }
 }

@@ -1,6 +1,7 @@
 <?php
  require_once("db.php");
 class Functions extends DB{
+
   function verifValidAccessToken($access_token){
     try{
       $ReqExiToken=parent::$db->prepare("SELECT idsession FROM session WHERE accesstoken=:access_token");
@@ -37,65 +38,101 @@ class Functions extends DB{
       exit;
     }
   }
-  function refresh(){
-    //Check if access token and refresh token are in the same row
-    $old_access_token=$_SESSION["access_token"];
-    $old_refresh_token=$_SESSION["refresh_token"];
-    $new_access_token=base64_encode(date('Y-m-d h:i:s').openssl_random_pseudo_bytes(24));
-    $new_refresh_token=base64_encode(date('Y-m-d h:i:s').openssl_random_pseudo_bytes(24));
-    $new_access_token_expiry=11800;
-    $new_refresh_token_expiry=86400;
+  function getDetails(){
+    $access_token=$_SESSION["access_token"];
     try{
-        //SELECT session from specified access_token
-        $UpdSession=parent::$db->prepare(
-        "UPDATE
-          session
-        SET
-          accesstoken=:access_token,refreshtoken=:refresh_token,
-          accesstokenexpiry=date_add(NOW(), INTERVAL :accesstokenexpiry SECOND),
-          refreshtokenexpiry=date_add(NOW(), INTERVAL :refreshtokenexpiry SECOND)
-        WHERE
-          accesstoken=:old_access_token AND
-          refreshtoken=:old_refresh_token
-        ");
-        //bind all params
-        $UpdSession->bindparam(":access_token", $new_access_token, PDO::PARAM_STR);
-        $UpdSession->bindparam(":refresh_token", $new_refresh_token, PDO::PARAM_STR);
-        $UpdSession->bindparam(":accesstokenexpiry", $new_access_token_expiry, PDO::PARAM_STR);
-        $UpdSession->bindparam(":refreshtokenexpiry", $new_refresh_token_expiry, PDO::PARAM_STR);
-        $UpdSession->bindparam(":old_access_token", $old_access_token, PDO::PARAM_STR);
-        $UpdSession->bindparam(":old_refresh_token", $old_refresh_token, PDO::PARAM_STR);
-        $UpdSession->execute();
-        //
-        if($UpdSession->rowCount()>0) {
-          $_SESSION["access_token"]=$new_access_token;
-          $_SESSION["refresh_token"]=$new_refresh_token;
-          return 1;
-        }
+      $ReqUsrDetails=parent::$db->prepare("SELECT nomutilisateur,prenom,nom,role FROM user INNER JOIN session USING(userid) WHERE accesstoken=:access_token");
+      $ReqUsrDetails->bindparam("access_token",$access_token,PDO::PARAM_STR);
+      $ReqUsrDetails->execute();
+      if($ReqUsrDetails->rowCount()>0)
+        return $ReqUsrDetails->fetch(PDO::FETCH_ASSOC);
+      else
         return -1;
     }catch(PDOException $err){
-      echo("Database error : ". $err);
-      return -1;
+      echo("DATABASE error : ".$err);
+      exit;
     }
   }
-  function verifConnexion($access_token,$refresh_token){
+
+
+  function getAvailableModules(){
+      $availableModule=[
+      "Home"=>"accueil",
+      "Reservation"=>"reservation",
+      "Lumiere"=>"lampe",
+      "Porte"=>"porte",
+      "Chauffage"=>"chauffage",
+      "Help"=>"tickets"
+    ];
+      if ($this->getRole()=="admin") $availableModule["Admin"]="admin";
+      return $availableModule;
+  }
+
+  function showNav($module){
+    $modules=$this->getAvailableModules();
+    $details=$this->getDetails();
+    $str="";
+    foreach ($modules as $key => $value) {
+      if($value===$module)
+        $str.='<li class="selected"><a href="index.php?module='.$value.'">'.$key.'</a></li>';
+      else
+        $str.='<li class=""><a href="index.php?module='.$value.'">'.$key.'</a></li>';
+    }
+    echo('
+    <link rel="stylesheet" href="resources/styles/main.css" />
+    <nav class="navBar">
+      <button id="ham">HAM</button>
+      <div class="profile">
+        <img src="resources/img/image.png" alt="profilePiciture" class="profilePicture" />
+        <p class="username">'.$details["nomutilisateur"].'</p>
+      </div>
+      <ul>
+        '.
+        $str
+        .'
+      </ul>
+      <button class="logout" id="logout">Logout</button>
+    </nav>
+    ');
+  }
+
+  function verifConnexion(){
+    if(isset($_SESSION["access_token"])){
+        $access_token=$_SESSION["access_token"];
+        $refresh_token=$_SESSION["refresh_token"];
+    }
+    else return -1;
     $verifAT=$this->verifValidAccessToken($access_token);
     $verifRT=$this->verifValidRefreshToken($refresh_token);
-    error_log($verifRT);
-    if($verifAT==2)
-      return;
+    if($verifAT==2){
+      return 1;
+    }
     else if($verifAT==1&&$verifRT==2){
-      header('location:index.php?module=Connexion&action=refresh');
+      header('location:index.php?module=connexion&action=refresh');
     }
     else{
       session_destroy();
-      header('location:index.php?action=login');
+      header('location:index.php?module=connexion&action=login');
+    }
+  }
+  function getRole(){
+    $access_token=$_SESSION["access_token"];
+    try{
+      $ReqUsrRole=parent::$db->prepare("SELECT role FROM user INNER JOIN session USING(userid) WHERE accesstoken=:access_token");
+      $ReqUsrRole->bindparam("access_token",$access_token,PDO::PARAM_STR);
+      $ReqUsrRole->execute();
+      if($ReqUsrRole->rowCount()>0)
+        return $ReqUsrRole->fetch(PDO::FETCH_ASSOC)["role"];
+      else
+        return -1;
+    }catch(PDOException $err){
+      echo("DATABASE error : ".$err);
+      exit;
     }
 
-  }
-
+}
 }
 
-
+$function=new Functions();
 
 ?>

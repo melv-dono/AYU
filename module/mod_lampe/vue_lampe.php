@@ -1,11 +1,15 @@
 <?php
     class Vue_lampe {
-        
+
+        function show(){
+          require_once(FUNCTIONS);
+          $function->showNav("lampe");
+          $this->menu();
+        }
         function menu(){
             echo '
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-            <link rel="stylesheet" href="lampe.css">
-            <main>
+            <link rel="stylesheet" href="'.DIR_NAME.'lampe.css">
+            <div class="app">
                 <div class="gauche" style="text-align:center">
                     <a href="mod_lampe.php?module=lampe&action=allumer">Allumer<br></a>
                     <a href="mod_lampe.php?module=lampe&action=eteindre">Eteindre<br></a>
@@ -24,14 +28,14 @@
                 <script>
                     //const selectLumi = document.getElementById("luminosite");
                     //selectLumi.addEventListener("mouseup", (event)=>{
-                        
+
                     //});
 
-                    $("#luminosite").on("input change", function() { 
-                        
+                    $("#luminosite").on("input change", function() {
+
                      });
                 </script>
-            </main>
+            </div>
             ';
         }
     }

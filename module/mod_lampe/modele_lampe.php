@@ -1,8 +1,8 @@
 <?php
-    require_once("../../db.php");
+    require_once("db.php");
     class Modele_lampe extends DB{
         public function __construct() {
-            
+
         }
 
         //public function allumer($numSalle, $allumer){
@@ -29,7 +29,7 @@
             $result=$selectRequete->fechAll(PDO::FETCH_ASSOC);
             echo $result;
         }*/
-        
+
         //public function setLuminosite($lum,$numSalle){
         public function setLuminosite($lum){
             $selectRequete = parent::$db->prepare("UPDATE caracteristique SET valeur=? WHERE idcaracteristique=?;");

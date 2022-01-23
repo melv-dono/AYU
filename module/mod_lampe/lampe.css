@@ -4,7 +4,7 @@ body{
     margin: 0 0;
 }
 
-main {
+.app {
     display: grid;
     grid-template-columns: auto auto;
 	margin: 0px 0px;
@@ -12,12 +12,12 @@ main {
     background-color: #191a21;
 }
 
-.gauche{
+.app .gauche{
     grid: 1;
     margin: auto;
 }
 
-a{
+.app a{
     display: block;
     margin: 10px;
     text-align: center;
@@ -33,21 +33,21 @@ a{
     text-decoration: none;
 }
 
-a:hover{
+.app a:hover{
     color: #e1ab4f;
 }
 
-.droite{
+.app .droite{
     grid: 2;
     margin: auto;
     color: white;
     font-weight: bold;
 }
 
-.lumi{
+.app .lumi{
     margin: 10px;
 }
 
-.col{
+.app .col{
     margin: 10px;
 }

@@ -14,12 +14,15 @@ Class Controleur_connexion{
   }
   // Init new componnent
   function init(){
+    require_once("utile/functions.php");
     switch ($this->action) {
       case 'login':
+          $function->verifConnexion()===1 ? header("location:index.php") : false ;
           $this->vue->login_form();
         break;
         case 'signin':
-          $this->vue->signin_form();
+        $function->verifConnexion()===1 ? header("location:index.php") : false ;
+        $this->vue->signin_form();
         break;
       case 'loginSubmit':
           $this->login();
@@ -56,7 +59,7 @@ Class Controleur_connexion{
   }
   function refresh(){
     if(!isset($_SESSION["access_token"]))
-        header("Location:index.php");
+        header("Location:index.php?module=connexion?action=login");
     $this->modele->refresh();
     header("Location:index.php");
   }

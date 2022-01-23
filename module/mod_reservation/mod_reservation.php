@@ -1,5 +1,5 @@
 <?php
-    require_once 'controleur_reservation';
+    require_once DIR_NAME.'controleur_reservation';
 
     class Mod_reservation {
 

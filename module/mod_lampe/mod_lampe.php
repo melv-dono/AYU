@@ -1,7 +1,6 @@
 <?php
-    require_once('controleur_lampe.php');
-    $lampe = new Mod_lampe();
-    class Mod_lampe {
+    require_once(DIR_NAME.'controleur_lampe.php');
+    class Mod {
         private $controleur;
         private $action;
         private $etat;

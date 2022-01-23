@@ -1,9 +1,11 @@
 <?php
-    class Vue_accueil {
+    class Vue_accueil{
 
         function display($modules, $reservations,$details) {
           echo('<link rel="stylesheet" href="./module/mod_accueil/styles/styles.css">');
-          $this->shownav($modules,$details);
+          require_once(FUNCTIONS);
+          $function=new Functions();
+          $function->showNav("accueil");
           $this->showMain($reservations,$details);
           $this->addScript(["logout"]);
         }
@@ -18,6 +20,7 @@
           }
           echo('
           <nav id="navBar">
+            <button id="ham">HAM</button>
             <div class="profile">
               <img src="resources/img/image.png" alt="profilePiciture" class="profilePicture" />
               <p class="username">'.$details["nomutilisateur"].'</p>
