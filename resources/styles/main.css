@@ -1,10 +1,18 @@
+:root {
+ --bg-main:#191a21;
+ --bg-submain:#252531;
+ --bg-button:#3f4ae4;
+ --bg-surround:#e1ab4f;
+}
+
 body {
   min-height: 100vh;
-  background: #191a21 !important;
+  background: var(--bg-main) !important;
   font-size: 20px !important;
   display: grid;
   grid-template-columns: [first] 15% [end];
   color: #fff !important;
+
 }
 
 .navBar {
@@ -23,7 +31,7 @@ body {
   display: flex;
   grid-row: 1;
   overflow: hidden;
-  border-bottom: solid #222329 2px;
+  border-bottom: solid var(--bg-submain) 2px;
 }
 .profilePicture {
   width: 50px;
@@ -59,7 +67,7 @@ body {
   font-size: 15px;
   font-weight: bold;
   padding: 5px;
-  background-color: #3f4ae4;
+  background-color: var( --bg-button);
   grid-row: 3;
   border-radius: 15px;
 }
@@ -68,10 +76,11 @@ body {
   grid-template-rows: 50% auto;
   grid-column: 2/2;
   margin-bottom: 10px;
+  overflow: auto;
 }
 
 .selected {
-  border-bottom: solid #e1ab4f 5px !important;
+  border-bottom: solid var(--bg-surround) 5px !important;
   border-radius: 5px !important;
 }
 
