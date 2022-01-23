@@ -69,39 +69,10 @@ body {
   grid-column: 2/2;
   margin-bottom: 10px;
 }
-.app h3 {
-  grid-row: 1;
-  place-self: center;
-  font-weight: bold;
-  font-size: 50px !important;
-}
-.reservation {
-  grid-row: 2;
-  justify-self: stretch;
-  text-align: center;
-  background: #252531;
-  border-radius: 10px;
-}
 
 .selected {
   border-bottom: solid #e1ab4f 5px !important;
   border-radius: 5px !important;
-}
-.addReservation {
-  all: unset;
-  display: block;
-  margin: auto;
-  text-align: center;
-  justify-self: center;
-  width: 110px;
-  height: 30px;
-  color: #fff;
-  font-size: 15px;
-  font-weight: bold;
-  padding: 5px;
-  background-color: #3f4ae4;
-  grid-row: 3;
-  border-radius: 15px;
 }
 
 a{
