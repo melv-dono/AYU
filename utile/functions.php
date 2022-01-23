@@ -79,6 +79,7 @@ class Functions extends DB{
         $str.='<li class=""><a href="index.php?module='.$value.'">'.$key.'</a></li>';
     }
     echo('
+    <script type=module src="resources/scripts/logout.js"></script>
     <link rel="stylesheet" href="resources/styles/main.css" />
     <nav class="navBar">
       <button id="ham">HAM</button>

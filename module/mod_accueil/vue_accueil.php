@@ -7,32 +7,7 @@
           $function=new Functions();
           $function->showNav("accueil");
           $this->showMain($reservations,$details);
-          $this->addScript(["logout"]);
-        }
-
-        function shownav($modules,$details){
-          $str="";
-          foreach ($modules as $key => $value) {
-            if($value==="Home")
-              $str.='<li class="selected"><a href="">'.$value.'</a></li>';
-            else
-              $str.='<li class=""><a href="">'.$value.'</a></li>';
-          }
-          echo('
-          <nav id="navBar">
-            <button id="ham">HAM</button>
-            <div class="profile">
-              <img src="resources/img/image.png" alt="profilePiciture" class="profilePicture" />
-              <p class="username">'.$details["nomutilisateur"].'</p>
-            </div>
-            <ul>
-              '.
-              $str
-              .'
-            </ul>
-            <button class="logout" id="logout">Logout</button>
-          </nav>
-          ');
+          //$this->addScript(["logout"]);
         }
 
         function oneRowReservation($reservation){
