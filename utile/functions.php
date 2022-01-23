@@ -41,7 +41,7 @@ class Functions extends DB{
   function getDetails(){
     $access_token=$_SESSION["access_token"];
     try{
-      $ReqUsrDetails=parent::$db->prepare("SELECT nomutilisateur,prenom,nom,role FROM user INNER JOIN session USING(userid) WHERE accesstoken=:access_token");
+      $ReqUsrDetails=parent::$db->prepare("SELECT userid,nomutilisateur,prenom,nom,role FROM user INNER JOIN session USING(userid) WHERE accesstoken=:access_token");
       $ReqUsrDetails->bindparam("access_token",$access_token,PDO::PARAM_STR);
       $ReqUsrDetails->execute();
       if($ReqUsrDetails->rowCount()>0)
@@ -130,8 +130,10 @@ class Functions extends DB{
       echo("DATABASE error : ".$err);
       exit;
     }
-
-}
+  }
+  function is_admin(){
+    return $this->getRole()==="admin"? 1:0;
+  }
 }
 
 $function=new Functions();
