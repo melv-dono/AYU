@@ -11,7 +11,7 @@
 session_start();
 $module=isset($_GET["module"]) ? $_GET["module"] : "accueil";
 require("utile/define.php");
-$filePath=DIR_NAME."mod_".$module.".php";
+$filePath=DIR_NAME."mod_".strtolower($module).".php";
 if(file_exists($filePath)){
   require_once($filePath);
   $page=new Mod;
