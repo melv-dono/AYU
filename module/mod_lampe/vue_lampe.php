@@ -20,20 +20,9 @@
                         <input type="range" class="form-range" id="luminosite" name="luminosite" min="0" max="100" value="100"><br>
                         <label for="luminosite" class="form-label">Luminosité</label><br>
                     </div>
-                    <div class="col">
-                        <input type="color" id="couleur" name="couleur" value="#ffffff"><br>
-                        <label for="couleur">Couleur</label><br>
-                    <div>
                 </div>
-                <script>
-                    //const selectLumi = document.getElementById("luminosite");
-                    //selectLumi.addEventListener("mouseup", (event)=>{
+                <script src='.DIR_NAME."lampe.js".'>
 
-                    //});
-
-                    $("#luminosite").on("input change", function() {
-
-                     });
                 </script>
             </div>
             ';

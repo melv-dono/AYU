@@ -33,9 +33,9 @@
         //public function setLuminosite($lum,$numSalle){
         public function setLuminosite($lum){
             $selectRequete = parent::$db->prepare("UPDATE caracteristique SET valeur=? WHERE idcaracteristique=?;");
-                //$selectRequete = parent::$db->prepare("UPDATE caracteristique SET valeur=? WHERE idcaracteristique=? AND numerosalle=?;");
-                $selectRequete->execute(array($lum,"1"));
-                //$selectRequete->execute(array($lum,"1",$numSalle));
+            //$selectRequete = parent::$db->prepare("UPDATE caracteristique SET valeur=? WHERE idcaracteristique=? AND numerosalle=?;");
+            $selectRequete->execute(array($lum,"1"));
+            //$selectRequete->execute(array($lum,"1",$numSalle));
         }
 
         public function getNumSalle(){

@@ -3,7 +3,6 @@
     class Mod {
         private $controleur;
         private $action;
-        private $etat;
         public function __construct() {
             $this->controleur=new Controleur_lampe();
             if(!isset($_GET['action'])){
@@ -21,6 +20,9 @@
                     break;
                 case 'eteindre':
                     $this->controleur->eteindre();
+                    break;
+                case 'luminosite':
+                    $this->controleur->setLuminosite();
                     break;
             }
         }

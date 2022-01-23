@@ -33,7 +33,8 @@
 				$this->vue->show();
 			}
 
-			function setLuminosite($lum){
+			function setLuminosite(){
+				$lum=htmlspecialchars($_GET['luminosite']);
 				$this->modele->setLuminosite($lum);
 			}
 		}
