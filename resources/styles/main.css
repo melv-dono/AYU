@@ -1,24 +1,61 @@
 :root {
  --bg-main:#191a21;
  --bg-submain:#252531;
+ --bg-submain_light:#2e2e36;
  --bg-button:#3f4ae4;
  --bg-surround:#e1ab4f;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-button {
+  display: none;
+}
+::-webkit-scrollbar-track {
+  background-color: #646464;
+}
+::-webkit-scrollbar-track-piece {
+  background-color: #000;
+}
+::-webkit-scrollbar-thumb {
+  height: 50px;
+  background-color: #666;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-corner {
+  background-color: #646464;
+  border-radius: 0 0 0.25rem 0;
+}
+::-webkit-resizer {
+  background-color: #666;
+}
+
+
 body {
-  min-height: 100vh;
+  max-height: 100vh;
+  max-width: 100vw;
   background: var(--bg-main) !important;
   font-size: 20px !important;
   display: grid;
   grid-template-columns: [first] 15% [end];
   color: #fff !important;
 
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .navBar {
   display: grid;
   grid-template-rows: 8% auto 10%;
   grid-column: 1;
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+  height: 100%;
 }
 
 #ham{
@@ -78,6 +115,8 @@ body {
   grid-column: 2/2;
   margin-bottom: 10px;
   overflow: auto;
+  min-height: 0;
+  min-width: 0;
 }
 
 .selected {

@@ -1,12 +1,12 @@
 <?php
-    require_once("../../db.php");
-    require_once("../../utile/functions.php");
+    require_once("db.php");
+    require_once("utile/functions.php");
     $function = new Functions();
     $userid=$function->getDetails()['userid'];
 
     class Modele_chauffage extends DB{
         public function __construct() {
-            
+
         }
 
         public function setTemperature($tempe){
@@ -29,6 +29,6 @@
             $result=$selectRequete->fechAll(PDO::FETCH_ASSOC)[numerosalle];
             return $result;
         }
-        
+
     }
 ?>

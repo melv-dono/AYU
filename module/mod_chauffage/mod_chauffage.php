@@ -1,7 +1,6 @@
 <?php
     require_once('controleur_chauffage.php');
-    $chauffage = new Mod_chauffage();
-    class Mod_chauffage {
+    class Mod {
         private $controleur;
         private $action;
         public function __construct() {
@@ -19,7 +18,7 @@
                 case 'temperature':
                     $this->controleur->setTemperature();
                     break;
-                
+
             }
         }
     }

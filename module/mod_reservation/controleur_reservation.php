@@ -1,8 +1,7 @@
 <?php
-	require_once 'modele_reservation.php';
-	require_once 'vue_reservation.php';
-    require_once 'temp_Connexion.php';
-	
+	require_once DIR_NAME.'modele_reservation.php';
+	require_once DIR_NAME.'vue_reservation.php';
+
 	class Controleur_reservation {
 		private $modele;
 		public $vue;
@@ -14,12 +13,7 @@
 		}
 
 		function init() {
-
-			$this->action = htmlspecialchars($_GET['action']);
-			if (!isset($_GET['action'])) {
-				$this->action = "défaut";
-			}
-
+			array_key_exists("action",$_GET) ? $this->action=$_GET['action'] : $this->action='défaut';
 			switch($this->action) {
 				case "défaut":
 					$this->display();
@@ -45,16 +39,16 @@
 			$this->modele->reserver($date2, $heure2, $salle);
 		}
 
-		function dispoCreneaux() {	
+		function dispoCreneaux() {
 			$salle = htmlspecialchars($_POST['salle']);
 			$date = htmlspecialchars($_POST['date']);
 			// var_dump($date);
 			$crenaux = $this->modele->creneauxReserve($date, $salle);
-			if (count($crenaux) > 0) 
+			if (count($crenaux) > 0)
 				$this->vue->afficheCreneau($crenaux, $date, $salle);
 			else
 				$this->vue->creanauIndispo();
-			
+
 		}
 
 		function display() {
@@ -62,7 +56,5 @@
 			$this->vue->choixSalle($salles);
 		}
 	}
-	Connexion::initConnexion();
-	$ctl = new Controleur_reservation();
-	$ctl->init();
+
 ?>

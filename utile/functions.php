@@ -1,6 +1,6 @@
 <?php
-//  require_once("db.php");
-require_once("../../db.php");
+ require_once("db.php");
+// require_once("../../db.php");
 
 class Functions extends DB{
 
@@ -62,7 +62,6 @@ class Functions extends DB{
       "Home"=>"accueil",
       "Reservation"=>"reservation",
       "Lumiere"=>"lampe",
-      "Porte"=>"porte",
       "Chauffage"=>"chauffage",
       "Help"=>"tickets"
     ];

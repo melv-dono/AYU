@@ -19,6 +19,7 @@ if(file_exists($filePath)){
   $page=new Mod;
 }
 else{
+  echo'eee';
   http_response_code(404);
   die();
 }
