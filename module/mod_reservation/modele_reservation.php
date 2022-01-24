@@ -1,17 +1,41 @@
 <?php
-    // require_once('./../../db.php');
-    // require_once('../../utile/user.php');
-    require_once('temp_Connexion.php');
-    
-    class Modele_reservation extends Connexion{
+
+    require_once('db.php');
+
+    class Modele_reservation extends DB{
+
+      // Delete reservation
+      function deleteReservation($idRes){
+        try {
+          require_once(FUNCTIONS);
+          $function=new Funtions;
+          $userid=$function->getDetails()["userid"];
+
+          $DelExiRes = $function->is_admin()>0 ?
+          parent::$db->prepare("DELETE FROM reservation WHERE idreservation=:idres")
+          : parent::$db->prepare("DELETE FROM reservation WHERE idreservation=:idres AND userid=:userid");
+          $DelExiRes->bindParam(':idres',$idRes, PDO::PARAM_INT);
+          $DelExiRes->bindParam(':userid',$userid, PDO::PARAM_INT);
+          $DelExiRes->execute();
+          return $DelExiRes->rowCount();
+        } catch (PDOException $err) {
+          http_status_code(500);
+          error_log("DATABASE ERROR : ".$err);
+        }
+
+      }
+
+
+
 
         public function reserver($date, $heure, $salle) {
             // Attention modification BD
             $success=0;
             if (!isset($IdResaesa)) {
                 //TO DO : Vérification du userId avec le token avant la requête
-                // $userId = getUserId();
-                $userId = 1;
+                require_once(FUNCTIONS);
+                $function=new Functions;
+                $userId = $function->getDetails()['userid'];
                 $InsResa = parent::$db->prepare('INSERT INTO reservation VALUES (DEFAULT, ?, ?, ?, ?);');
                 $InsResa->execute(array($userId, $date, $heure, $salle));
                 $rowCount=$InsResa->rowCount();
@@ -24,7 +48,7 @@
         function sallesDispo() {
             $ReqSallesDispo = parent::$db->prepare('SELECT numerosalle FROM salle;');
             $ReqSallesDispo->execute();
-            $SalleDispo = $ReqSallesDispo->fetchAll(PDO::FETCH_ASSOC); 
+            $SalleDispo = $ReqSallesDispo->fetchAll(PDO::FETCH_ASSOC);
             return $SalleDispo;
         }
 
@@ -53,6 +77,7 @@
                 echo $err;
             }
         }
+
 
         function creneauxDispo($list) {
             $length = count($list);

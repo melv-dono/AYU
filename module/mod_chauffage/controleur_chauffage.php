@@ -1,7 +1,7 @@
 <?php
 		include_once 'modele_chauffage.php';
 		include_once 'vue_chauffage.php';
-		
+
 		class Controleur_chauffage {
 			private $modele;
 			public $vue;
@@ -12,7 +12,7 @@
 				$this->modele = new Modele_chauffage();
 				$this->vue = new Vue_chauffage();
 			}
-            
+
 			function mettreMenu(){
 				$this->vue->menu();
 			}

@@ -12,7 +12,7 @@ require_once("db.php");
       function getReservation(){
         $access_token=$_SESSION["access_token"];
         try{
-          $ReqLisReservation=parent::$db->prepare("SELECT dateD,heure,numeroSalle FROM reservation INNER JOIN session USING(userid) WHERE accesstoken=:access_token");
+          $ReqLisReservation=parent::$db->prepare("SELECT idreserv,dateD,heure,numeroSalle FROM reservation INNER JOIN session USING(userid) WHERE accesstoken=:access_token");
           $ReqLisReservation->bindparam("access_token",$access_token,PDO::PARAM_STR);
           $ReqLisReservation->execute();
           if($ReqLisReservation->rowCount()>0)

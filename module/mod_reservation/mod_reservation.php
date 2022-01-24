@@ -1,7 +1,7 @@
 <?php
-    require_once DIR_NAME.'controleur_reservation';
+    require_once(DIR_NAME.'controleur_reservation.php');
 
-    class Mod_reservation {
+  class Mod {
 
         private $action;
         private $salle;
@@ -14,11 +14,9 @@
         // Récupérer la fin et le début sélectionner
 
         function __construct() {
-            $this->ctrl = new Controleur_reservation ();
+            $this->ctrl = new Controleur_reservation() ;
+            $this->ctrl ->init();
         }
 
-        function agir(){
-            $this->crtl->init();
-        }
     }
 ?>

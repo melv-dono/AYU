@@ -13,7 +13,6 @@ $("#saveChange").on("click",()=>{
   })
 });
 
-
 function getData(){
   return {
     numeroSalle:document.getElementById("numeroSalle").value,

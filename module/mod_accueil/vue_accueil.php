@@ -7,12 +7,26 @@
           $function=new Functions();
           $function->showNav("accueil");
           $this->showMain($reservations,$details);
-          //$this->addScript(["logout"]);
+          $this->addScript(["editReservation"]);
+        }
+
+        function options(){
+          return('
+            <div class="option">
+              <i class="bi bi-x deleteReservation"></i>
+            </div>
+          ');
         }
 
         function oneRowReservation($reservation){
           return('
-            <tr><td>'.date('Y/m/d',strtotime($reservation["dateD"])).'</td><td>'.date('H:i:s',strtotime($reservation["heure"])).'</td><td>'.$reservation['numeroSalle'].'</td></tr>
+            <tr>
+            <td>'.$reservation["idreserv"].'</td>
+            <td>'.date('Y/m/d',strtotime($reservation["dateD"])).'</td>
+            <td>'.date('H:i:s',strtotime($reservation["heure"])).'</td>
+            <td>'.$reservation['numeroSalle'].'</td>
+            <td>'.$this->options().'</td>
+            </tr>
           ');
         }
 
@@ -30,9 +44,11 @@
             return('
               <table class="table table-dark table-hover">
                 <thead>
+                  <th scope="col">id</th>
                   <th scope="col">Date</th>
                   <th scope="col">Heure</th>
                   <th scope="col">Numero de salle</th>
+                  <th scope="col">options</th>
                 </thead>
                 <tbody>
                   '.$tbodystr.'

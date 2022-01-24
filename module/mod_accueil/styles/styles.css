@@ -1,4 +1,7 @@
 
+.app{
+  padding:20px;
+}
 .app h3 {
   grid-row: 1;
   place-self: center;
@@ -6,12 +9,14 @@
   font-size: 50px !important;
 }
 .reservation {
+  width: 100%;
+  padding: 20px;
   grid-row: 2;
   justify-self: stretch;
   text-align: center;
   background: #252531;
   border-radius: 10px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 
