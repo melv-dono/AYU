@@ -21,6 +21,9 @@
 				case "créneaux":
 					$this->dispoCreneaux();
 					break;
+				case "deleteReservation":
+					$this->deleteReservation();
+					break;
 				case "réserver":
 					$this->reserver();
 					break;
@@ -39,6 +42,9 @@
 			$this->modele->reserver($date2, $heure2, $salle);
 		}
 
+		function deleteReservation(){
+			isset($_GET['deleteReservation']) ?	$this->modele->deleteReservation($_GET['deleteReservation']) : false ;
+		}
 		function dispoCreneaux() {
 			$salle = htmlspecialchars($_POST['salle']);
 			$date = htmlspecialchars($_POST['date']);

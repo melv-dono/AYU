@@ -1,6 +1,5 @@
 <?php
     require_once(DIR_NAME.'controleur_tickets.php');
-    $tickets = new Mod_tickets();
     class Mod{
         private $controleur;
 

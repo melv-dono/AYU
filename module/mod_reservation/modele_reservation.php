@@ -4,6 +4,30 @@
 
     class Modele_reservation extends DB{
 
+      // Delete reservation
+      function deleteReservation($idRes){
+        try {
+          require_once(FUNCTIONS);
+          $function=new Funtions;
+          $userid=$function->getDetails()["userid"];
+
+          $DelExiRes = $function->is_admin()>0 ?
+          parent::$db->prepare("DELETE FROM reservation WHERE idreservation=:idres")
+          : parent::$db->prepare("DELETE FROM reservation WHERE idreservation=:idres AND userid=:userid");
+          $DelExiRes->bindParam(':idres',$idRes, PDO::PARAM_INT);
+          $DelExiRes->bindParam(':userid',$userid, PDO::PARAM_INT);
+          $DelExiRes->execute();
+          return $DelExiRes->rowCount();
+        } catch (PDOException $err) {
+          http_status_code(500);
+          error_log("DATABASE ERROR : ".$err);
+        }
+
+      }
+
+
+
+
         public function reserver($date, $heure, $salle) {
             // Attention modification BD
             $success=0;
@@ -53,6 +77,7 @@
                 echo $err;
             }
         }
+
 
         function creneauxDispo($list) {
             $length = count($list);
