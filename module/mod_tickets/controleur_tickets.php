@@ -49,14 +49,6 @@
 				echo "rien";
 			$this->vue->menu($Salle);
 		}
-
-		// function listeEquipement() {
-		// 	$Salle = htmlspecialchars($_GET['ticketSalle']);
-		// 	$Equipement = $this->modele->equipementDispo($Salle);
-		// 	$Salles = $this->modele->sallesDispo();
-		// 	$this->vue->setTest("Salut");
-		// 	$this->vue->menuAvecEquipement($Salles, $Equipement);
-		// }
 	}
 	$ctrl = new Controleur_tickets();
 	$ctrl->init();

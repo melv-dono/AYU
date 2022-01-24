@@ -10,7 +10,7 @@
         }
 
         public function setTemperature($tempe){
-            $selectRequete = parent::$db->prepare("SELECT * FROM reservation WHERE userid=? AND TIMEDIFF(heure,NOW())>'00:00:00';");
+            $selectRequete = parent::$db->prepare("SELECT * FROM reservation WHERE userid=? AND TIMEDIFF(heure,NOW())>'-01:00:00' and TIMEDIFF(heure,NOW())<'00:00:00';");
             $selectRequete->execute(array($userid));
             $rowcount=$selectRequete->rowCount();
             if($rowcount=1){
@@ -24,7 +24,7 @@
         }
 
         public function getNumSalle(){
-            $selectRequete=parent::$db->prepare("SELECT numerosalle FROM reservation where userid=? AND timediff(heure,now())>'00:00:00';");
+            $selectRequete=parent::$db->prepare("SELECT numerosalle FROM reservation where userid=? AND TIMEDIFF(heure,NOW())>'-01:00:00' and TIMEDIFF(heure,NOW())<'00:00:00';");
             $selectRequete->execute(array($userid));
             $result=$selectRequete->fechAll(PDO::FETCH_ASSOC)[numerosalle];
             return $result;
