@@ -1,5 +1,7 @@
 <?php
- require_once("db.php");
+//  require_once("db.php");
+require_once("../../db.php");
+
 class Functions extends DB{
 
   function verifValidAccessToken($access_token){

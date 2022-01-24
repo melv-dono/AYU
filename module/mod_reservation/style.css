@@ -1,0 +1,13 @@
+body {
+    min-height: 100vh;
+    background: #191a21 !important;
+    font-size: 20px !important;
+    display: grid;
+    color: #fff !important;
+}
+main {
+    min-height: 60%;
+}
+main #choixSalle {
+    border: solid red 3px;
+}
