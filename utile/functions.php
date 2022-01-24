@@ -84,7 +84,6 @@ class Functions extends DB{
     <script type=module src="resources/scripts/logout.js"></script>
     <link rel="stylesheet" href="resources/styles/main.css" />
     <nav class="navBar">
-      <button id="ham">HAM</button>
       <div class="profile">
         <img src="resources/img/image.png" alt="profilePiciture" class="profilePicture" />
         <p class="username">'.$details["nomutilisateur"].'</p>

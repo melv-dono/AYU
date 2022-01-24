@@ -11,6 +11,7 @@
   text-align: center;
   background: #252531;
   border-radius: 10px;
+  overflow: scroll;
 }
 
 
