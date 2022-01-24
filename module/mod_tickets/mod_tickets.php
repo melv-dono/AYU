@@ -1,21 +1,12 @@
 <?php
-    require_once('controleur_tickets.php');
+    require_once(DIR_NAME.'controleur_tickets.php');
     $tickets = new Mod_tickets();
-    class Mod_tickets {
+    class Mod{
         private $controleur;
-        private $etat;
 
-        // public function __construct() {
-        //     $this->controleur=new Controleur_tickets();
-        //     switch($this->action){
-        //         case 'index':
-        //             $this->controleur->mettreMenu();
-        //             break;
-        //         case 'equipements':
-        //             $this->controleur->listeEquipement();
-        //             break;
-        //     }
-        // }
+        public function __construct() {
+            $this->controleur=new Controleur_tickets();
+            $this->controleur->init();
+        }
     }
-    //http://localhost/~mnguyen/AYU/module/mod_tickets/mod_tickets.php
 ?>
