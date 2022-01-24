@@ -1,0 +1,53 @@
+/*------ body ------*/
+
+body{
+    margin: 0 0;
+}
+
+.app {
+    display: grid;
+    grid-template-columns: auto auto;
+	margin: 0px 0px;
+    height: 100%;
+    background-color: #191a21;
+}
+
+.app .gauche{
+    grid: 1;
+    margin: auto;
+}
+
+.app a{
+    display: block;
+    margin: 10px;
+    text-align: center;
+    width: 110px;
+    height: 50px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 5px;
+    background-color: #3f4ae4;
+    border-radius: 15px;
+    line-height: 40px;
+    text-decoration: none;
+}
+
+.app a:hover{
+    color: #e1ab4f;
+}
+
+.app .droite{
+    grid: 2;
+    margin: auto;
+    color: white;
+    font-weight: bold;
+}
+
+.app .lumi{
+    margin: 10px;
+}
+
+.app .col{
+    margin: 10px;
+}

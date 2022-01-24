@@ -1,0 +1,72 @@
+body *{
+  font-weight: bold;
+}
+html,body {
+   height: 100%;
+   margin: 0;
+   overflow: hidden;
+}
+body{
+  box-sizing: border-box;
+  overflow: hidden;
+  display:flex;
+  flex-direction: column;
+  background: rgb(103,10,153);
+  background: linear-gradient(142deg, rgba(103,10,153,1) 0%, rgba(160,28,230,1) 43%, rgba(255,0,237,1) 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+}
+main{
+  box-sizing: border-box;
+  width:70%;
+  height: 100%;
+  text-align: center;
+  margin:auto;
+}
+main h2{
+  font-size: 50px;
+  font-weight: bold;
+  color:white;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.btn-primary{
+  background-color: #8800ff !important;
+  border-color: #8800ff !important;
+}
+form{
+
+  width: 30%;
+  margin: auto;
+  margin-top: auto;
+  margin-top: 150px;
+  text-align: center;
+  border: 2px #aaa3a317 solid;
+  padding: 20px;
+  background-color  :white;
+  overflow: hidden;
+}
+@media screen and (max-width: 1000px) {
+  form{
+    width: 70%;
+  }
+  html,body {
+     height: 100%;
+     margin: 0;
+     overflow: scroll;
+  }
+
+}
+@media screen and (max-width: 500px) {
+  form{
+    width: 100%;
+  }
+  html,body {
+     height: 100%;
+     margin: 0;
+     overflow: scroll;
+  }
+
+}
