@@ -2,18 +2,19 @@
     class Vue_chauffage {
         
         function menu(){
-            echo '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+            echo '
+            <link rel="stylesheet" href="chauffage.css">
             <main>
-            <div style="text-align:center">
-                <br>
-                <input type="range" id="temperature" name="temperature" min="15" max="25" step="1"><br>
-                <output></output>
+                <div style="text-align:center">
+                    <br>
+                    <input type="range" id="temperature" name="temperature" min="15" max="25" step="1"><br>
+                    <output></output>
+                    <label for="temperature">Temperature</label><br>
+                </div>
 
-                <script>
-                    
+                <script src='.DIR_NAME."chauffage.js".'>
+
                 </script>
-                <label for="temperature">Temperature</label><br>
-            </div>
             </main>
             ';
         }

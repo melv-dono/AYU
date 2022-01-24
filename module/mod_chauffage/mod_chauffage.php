@@ -15,6 +15,10 @@
             switch($this->action){
                 case 'index':
                     $this->controleur->mettreMenu();
+                    break;
+                case 'temperature':
+                    $this->controleur->setTemperature();
+                    break;
                 
             }
         }

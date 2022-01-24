@@ -16,5 +16,10 @@
 			function mettreMenu(){
 				$this->vue->menu();
 			}
+
+			function setTemperature(){
+				$tempe=htmlspecialchars($_GET['temperature']);
+				$this->modele->setLuminosite($tempe);
+			}
 		}
 	?>
