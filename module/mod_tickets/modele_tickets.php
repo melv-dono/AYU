@@ -18,6 +18,20 @@
             return $SalleDispo;
         }
 
+        function suppTicket($ticket) {
+            require_once(FUNCTIONS);
+            $function = new Functions();
+            $userId = $function->getDetails()['userid'];
+            try {
+                $DelTicket = parent::$db->prepare('DELETE FROM tickets WHERE idticket = ? AND userid = ?;');
+                $DelTicket->execute(array($ticket, $userId));
+                return $DelTicket->rowCount();
+            }
+            catch(PDOException $err) {
+                echo $err;
+            }    
+        }
+
         function envoyer($objet, $salle, $requete) {
             $success = 0;
         	require_once('utile/functions.php');

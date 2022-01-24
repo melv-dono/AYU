@@ -20,6 +20,9 @@
                 case 'envoie':
                     $this->enovieTicket();
                     break;
+				case 'suppTicket':
+					$this->suppTicket();
+					break;
 				default:
 					echo "Erreur switch ticket";
 					break;
@@ -41,6 +44,12 @@
 				$this->vue->validation();
 			else
 				$this->vue->erreurEnvoie();
+		}
+
+		function suppTicket() {
+			$ticket = htmlspecialchars($_GET['idticket']);
+			if ($this->modele->suppTicket($ticket) < 0)
+				header('500 Internal Error', true, 500);
 		}
 		
 		function mettreMenu(){

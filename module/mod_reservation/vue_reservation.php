@@ -2,19 +2,30 @@
   class Vue_reservation {
 
       function afficheCreneau($creneaux, $date, $salle) {
+        require_once(FUNCTIONS);
+        $function = new Functions();
+        $function->showNav('reservation');
         for ($i =0; $i<count($creneaux); $i++) {
           $output = $creneaux[$i] . ": 00-" . ($creneaux[$i] + 1) . ":00";
-          echo '<a class="flash" href="/~melvyn/AYU/module/mod_reservation/controleur_reservation.php?module=mod_reservation&action=réserver&date2=' . $date . '&salle2=' . $salle . '&heure=' . $creneaux[$i] . '"><button type="button" name="" value="">' . $output . '</button></a> ';
+          echo '
+          <a class="flash" href="/~melvyn/AYU/module/mod_reservation/controleur_reservation.php?module=mod_reservation&action=réserver&date2=' . $date . '&salle2=' . $salle . '&heure=' . $creneaux[$i] . '"><button type="button" class="btn btn-primary">' . $output . '</button></a> ';
         }
         echo '
-          <a href="/~melvyn/AYU/module/mod_reservation/controleur_reservation.php?module=mod_reservation&action=défaut"><button type="button">Retour</button></a>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-          <script type="text/javascript" src="flash_reservation.js"></script>
-        ';
+            <a href="index.php?module=reservation"><button type="button" class="btn btn-primary">Retour</button></a>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <script type="text/javascript" src="flash_reservation.js"></script>
+          ';
       }
 
       function creanauIndispo() {
-        //TODO
+        require_once(FUNCTIONS);
+        $function = new Functions();
+        $function->showNav('reservation');
+        echo '
+        <div>
+          <p>Il n\' y a plus de réservation !</p>
+          <a href="index.php?module=reservation" ><button type="button">Quitter</button></a>
+        </div>';
       }
 
       function choixSalle($salles) {

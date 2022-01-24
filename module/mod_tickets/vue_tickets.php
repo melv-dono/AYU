@@ -2,19 +2,28 @@
     class Vue_tickets {
         
         function validation() {
+            require_once(FUNCTIONS);
+            $function = new Functions();
+            $function->showNav('tickets');
             echo '
             <div>
                 <p>Votre ticket a bien été envoyé !</p>
                 <a href="index.php?module=tickets" ><button type="button">Quitter</button></a>
-            </div>';
+            </div>
+            <link href="' . DIR_NAME . 'tickets.css" rel="stylesheet">
+            ';
         }
 
         function erreurEnvoie() {
+            require_once(FUNCTIONS);
+            $function = new Functions();
+            $function->showNav('tickets');
             echo '
             <div>
                 <p>Votre ticket n\'a pas pu être envoyé !</p>
                 <a href="index.php?module=tickets" ><button type="button">Quitter</button></a>
             </div>
+            <link href="' . DIR_NAME . 'tickets.css" rel="stylesheet">
             ';
         }
 
