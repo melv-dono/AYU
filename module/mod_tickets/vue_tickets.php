@@ -5,7 +5,7 @@
             echo '
             <div>
                 <p>Votre ticket a bien été envoyé !</p>
-                <a href="http://localhost/~melvyn/AYU/module/mod_tickets/controleur_tickets.php" ><button type="button">Quitter</button></a>
+                <a href="index.php?module=tickets" ><button type="button">Quitter</button></a>
             </div>';
         }
 
@@ -13,18 +13,21 @@
             echo '
             <div>
                 <p>Votre ticket n\'a pas pu être envoyé !</p>
-                <a href="http://localhost/~melvyn/AYU/module/mod_tickets/controleur_tickets.php" ><button type="button">Quitter</button></a>
+                <a href="index.php?module=tickets" ><button type="button">Quitter</button></a>
             </div>
             ';
         }
 
         function menu($Salle){
-            echo '
-                <body>
-                    <main>
-                        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+            require_once(FUNCTIONS);
+            $function = new Functions();
+            $function->showNav('tickets');
 
-                        <form id="Ticket" action="/~melvyn/AYU/module/mod_tickets/controleur_tickets.php?action=envoie" method="post">
+            echo '
+                    <main class="app">
+                        <link href="' . DIR_NAME . 'tickets.css" rel="stylesheet">
+                        
+                        <form id="Ticket" action="index.php?module=tickets&action=envoie" method="post">
                         <div class="container-fluid">
                             <div class="col-sm-3">
                                 <label for="objet" class="form-label">Objet</label><br>
@@ -58,7 +61,6 @@
                         </div>
                         </form>
                     </main>
-                </body>
             ';
         }
     }

@@ -1,7 +1,7 @@
 <?php
 
-	require_once 'modele_tickets.php';
-	require_once 'vue_tickets.php';
+	require_once DIR_NAME.'modele_tickets.php';
+	require_once DIR_NAME.'vue_tickets.php';
 		
 	class Controleur_tickets {
 		private $modele;
@@ -50,6 +50,5 @@
 			$this->vue->menu($Salle);
 		}
 	}
-	$ctrl = new Controleur_tickets();
-	$ctrl->init();
+
 ?>

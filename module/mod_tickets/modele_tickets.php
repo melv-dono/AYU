@@ -1,5 +1,5 @@
 <?php
-    require_once("../../db.php");
+    require_once("db.php");
 
     class Modele_tickets extends DB{
         public function __construct() {
@@ -20,7 +20,7 @@
 
         function envoyer($objet, $salle, $requete) {
             $success = 0;
-        	require_once('../../utile/functions.php');
+        	require_once('utile/functions.php');
 			$a = new Functions();
 			$userId = $a->getDetails();
             try {
@@ -33,18 +33,5 @@
             }  
             return $success;
         }
-
-        // function equipementDispo($Salle) {
-        //     try {
-        //         $ReqEquipement = parent::$db->prepare('SELECT nom FROM equipement WHERE numerosalle = ?;');
-        //         $ReqEquipement->execute(array($Salle));
-        //         $Equipement = $ReqEquipement->fetchAll(PDO::FETCH_ASSOC);
-        //     }
-        //     catch(PDOException $err) {
-        //         echo $err;
-        //     }
-        //     return $Equipement;
-        // }
-        
     }
 ?>
