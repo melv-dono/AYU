@@ -28,6 +28,7 @@
 					$this->reserver();
 					break;
 				default:
+					echo $this->action;
 					echo "Erreur dans le module de réservation au niveau de la réservation";
 					break;
 			}
@@ -43,7 +44,7 @@
 		}
 
 		function deleteReservation(){
-			isset($_GET['deleteReservation']) ?	$this->modele->deleteReservation($_GET['deleteReservation']) : false ;
+			isset($_GET['idRes']) ?	$this->modele->deleteReservation($_GET['idRes']) : false ;
 		}
 		function dispoCreneaux() {
 			$salle = htmlspecialchars($_POST['salle']);

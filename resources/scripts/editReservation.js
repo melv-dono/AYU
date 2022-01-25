@@ -1,13 +1,14 @@
-$(".deleteReservation").on('click', ()=>{
-  const row = document.getElementsByClassName('deleteReservation').parentNode.parentNode.parentNode;
+$(".deleteReservation").on('click', (ev)=>{
+  console.log(ev)
+  const row = ev.target.parentNode.parentNode.parentNode;
   const id = row.children[0].textContent;
   console.log(id);
   $.ajax({
-    url:`index?module=reservation&action=deleteReservation=${id}`,
+    url:`index?module=reservation&action=deleteReservation&idRes=${id}`,
     method:'post',
     statusCode:{
       200:()=>{
-        console.log("deleted");
+        window.location.reload();
 
       }
     }

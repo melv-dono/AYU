@@ -8,15 +8,20 @@
       function deleteReservation($idRes){
         try {
           require_once(FUNCTIONS);
-          $function=new Funtions;
+          $function=new Functions;
           $userid=$function->getDetails()["userid"];
 
-          $DelExiRes = $function->is_admin()>0 ?
-          parent::$db->prepare("DELETE FROM reservation WHERE idreservation=:idres")
-          : parent::$db->prepare("DELETE FROM reservation WHERE idreservation=:idres AND userid=:userid");
-          $DelExiRes->bindParam(':idres',$idRes, PDO::PARAM_INT);
-          $DelExiRes->bindParam(':userid',$userid, PDO::PARAM_INT);
+          if($function->is_admin()>0){
+            $DelExiRes=parent::$db->prepare("DELETE FROM reservation WHERE idreserv=:idres");
+            $DelExiRes->bindParam(':idres',$idRes, PDO::PARAM_INT);
+          }
+          else {
+              $DelExiRes= parent::$db->prepare("DELETE FROM reservation WHERE idreserv=:idres AND userid=:userid");
+               $DelExiRes->bindParam(':idres',$idRes, PDO::PARAM_INT);
+               $DelExiRes->bindParam(':userid',$userid, PDO::PARAM_INT);
+          }
           $DelExiRes->execute();
+        $DelExiRes->debugDumpParams();
           return $DelExiRes->rowCount();
         } catch (PDOException $err) {
           http_status_code(500);
