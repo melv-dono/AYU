@@ -48,7 +48,6 @@
 		function dispoCreneaux() {
 			$salle = htmlspecialchars($_POST['salle']);
 			$date = htmlspecialchars($_POST['date']);
-			// var_dump($date);
 			$crenaux = $this->modele->creneauxReserve($date, $salle);
 			if (count($crenaux) > 0)
 				$this->vue->afficheCreneau($crenaux, $date, $salle);

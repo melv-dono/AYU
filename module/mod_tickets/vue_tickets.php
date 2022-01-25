@@ -6,11 +6,13 @@
             $function = new Functions();
             $function->showNav('tickets');
             echo '
+            <main class="app">
             <div>
                 <p>Votre ticket a bien été envoyé !</p>
                 <a href="index.php?module=tickets" ><button type="button">Quitter</button></a>
             </div>
             <link href="' . DIR_NAME . 'tickets.css" rel="stylesheet">
+            <main>
             ';
         }
 
@@ -19,10 +21,12 @@
             $function = new Functions();
             $function->showNav('tickets');
             echo '
+            <main class="app">
             <div>
                 <p>Votre ticket n\'a pas pu être envoyé !</p>
                 <a href="index.php?module=tickets" ><button type="button">Quitter</button></a>
             </div>
+            <main>
             <link href="' . DIR_NAME . 'tickets.css" rel="stylesheet">
             ';
         }

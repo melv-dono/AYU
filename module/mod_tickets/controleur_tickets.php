@@ -9,7 +9,6 @@
 		private $action;
 
 		function init() {
-<<<<<<< HEAD
 			$this->action=htmlspecialchars($_GET['action']);
 			if(!isset($_GET['action'])){
                 $this->action='index';
@@ -28,20 +27,6 @@
 					echo "Erreur switch ticket";
 					break;
             }
-=======
-			!isset($_GET['action'])?$this->action='index':$this->action=htmlspecialchars($_GET['action']);
-	    switch($this->action){
-	        case 'index':
-	            $this->mettreMenu();
-	            break;
-	        case 'envoie':
-	            $this->enovieTicket();
-	            break;
-					default:
-						echo "Erreur switch ticket";
-						break;
-	      }
->>>>>>> 80f83d5476a7c4768ae9816f011a4ce6be310172
 		}
 
 		function __construct() {
@@ -61,15 +46,12 @@
 				$this->vue->erreurEnvoie();
 		}
 
-<<<<<<< HEAD
 		function suppTicket() {
 			$ticket = htmlspecialchars($_GET['idticket']);
 			if ($this->modele->suppTicket($ticket) < 0)
 				header('500 Internal Error', true, 500);
 		}
 		
-=======
->>>>>>> 80f83d5476a7c4768ae9816f011a4ce6be310172
 		function mettreMenu(){
 			$Salle = $this->modele->sallesDispo();
 			if (!isset($Salle))
