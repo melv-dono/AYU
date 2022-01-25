@@ -4,7 +4,7 @@ $(".deleteReservation").on('click', (ev)=>{
   const id = row.children[0].textContent;
   console.log(id);
   $.ajax({
-    url:`index?module=reservation&action=deleteReservation&idRes=${id}`,
+    url:`index.php?module=reservation&action=deleteReservation&idRes=${id}`,
     method:'post',
     statusCode:{
       200:()=>{
