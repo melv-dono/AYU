@@ -3,7 +3,7 @@
 
     class Modele_tickets extends DB{
         public function __construct() {
-            
+
         }
 
         function sallesDispo() {
@@ -14,7 +14,7 @@
             }
             catch(PDOException $err) {
                 echo $err;
-            }            
+            }
             return $SalleDispo;
         }
 
@@ -36,22 +36,22 @@
             }
             catch(PDOException $err) {
                 echo $err;
-            }    
+            }
         }
 
         function envoyer($objet, $salle, $requete) {
             $success = 0;
         	require_once('utile/functions.php');
-			$a = new Functions();
-			$userId = $a->getDetails();
+      			$a = new Functions();
+      			$userId = $a->getDetails()['userid'];
             try {
                 $InsTicket = parent::$db->prepare('INSERT INTO tickets (objet, requete, traite, numerosalle, userid) VALUES (?,?,1,?,?);');
-                $InsTicket->execute(array($objet,$requete,$salle, $userId['userid']));
+                $InsTicket->execute(array($objet,$requete,$salle, $userId));
                 $success= $InsTicket->rowCount();
             }
             catch(PDOException $err) {
                 echo $err;
-            }  
+            }
             return $success;
         }
     }

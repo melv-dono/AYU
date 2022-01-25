@@ -9,17 +9,14 @@
 		private $action;
 
 		function init() {
-			$this->action=htmlspecialchars($_GET['action']);
-			if(!isset($_GET['action'])){
-                $this->action='index';
-            }
-            switch($this->action){
-                case 'index':
-                    $this->mettreMenu();
-                    break;
-                case 'envoie':
-                    $this->enovieTicket();
-                    break;
+			!isset($_GET['action'])? $this->action='index' : $this->action=$_GET['action'];
+	    switch($this->action){
+	        case 'index':
+	            $this->mettreMenu();
+	            break;
+	        case 'envoie':
+	            $this->enovieTicket();
+	            break;
 				case 'suppTicket':
 					$this->suppTicket();
 					break;
@@ -51,7 +48,7 @@
 			if ($this->modele->suppTicket($ticket) < 0)
 				header('500 Internal Error', true, 500);
 		}
-		
+
 		function mettreMenu(){
 			$Salle = $this->modele->sallesDispo();
 			if (!isset($Salle))

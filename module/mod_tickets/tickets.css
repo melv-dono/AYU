@@ -1,11 +1,25 @@
 .app {
     justify-items: center;
 }
+.app form{
+    width:100%;
+    display:grid;
+    grid-row:1/span 2;
+    padding:50px;
 
-.container-fluid {
-    text-align: center;
 }
 
+.container-fluid {
+    margin-bottom:15px;
+    place-self:center;
+    text-align: center;
+    background:var(--bg-submain);
+    border-radius:15px;
+}
+.col{
+    display:grid;
+    place-items:center;
+}
 .col-sm-3 {
     text-align: center;
 }
