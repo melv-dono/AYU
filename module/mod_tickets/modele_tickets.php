@@ -18,13 +18,20 @@
             return $SalleDispo;
         }
 
-        function suppTicket($ticket) {
-            require_once(FUNCTIONS);
-            $function = new Functions();
-            $userId = $function->getDetails()['userid'];
+        function suppTicket($idticket) {
             try {
-                $DelTicket = parent::$db->prepare('DELETE FROM tickets WHERE idticket = ? AND userid = ?;');
-                $DelTicket->execute(array($ticket, $userId));
+                require_once(FUNCTIONS);
+                $function = new Functions();
+                $userId = $function->getDetails()['userid'];
+
+                if($function->is_admin()>0){
+                    $DelExiRes=parent::$db->prepare("DELETE FROM tickets WHERE idticket = ? ");
+                    $DelTicket->execute(array($idticket));
+                }
+                else {
+                    $DelTicket = parent::$db->prepare('DELETE FROM tickets WHERE idticket = ? AND userid = ?;');
+                    $DelTicket->execute(array($idticket, $userId));
+                }
                 return $DelTicket->rowCount();
             }
             catch(PDOException $err) {

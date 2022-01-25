@@ -46,6 +46,7 @@
 		function deleteReservation(){
 			isset($_GET['idRes']) ?	$this->modele->deleteReservation($_GET['idRes']) : false ;
 		}
+		
 		function dispoCreneaux() {
 			$salle = htmlspecialchars($_POST['salle']);
 			$date = htmlspecialchars($_POST['date']);
