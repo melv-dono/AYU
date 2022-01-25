@@ -34,7 +34,8 @@
           if(!is_array($reservations))
             return ('
               <span>😭Vous n\'avez pas de reservation</span>
-              <button class="addReservation">👉Ajouter</button>
+              <button id="addReservation" class="addReservation">👉Ajouter</button>
+              <script src="resources/scripts/addReservation.js"></script>
               ');
           else{
             $tbodystr='';

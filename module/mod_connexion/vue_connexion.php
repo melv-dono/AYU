@@ -42,6 +42,7 @@ Class Vue_connexion{
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        <span>Vous n\'avez pas de compte ? <a href="index.php?module=connexion&action=signin">Créer un compte </a></span>
       </main>
     ');
   }

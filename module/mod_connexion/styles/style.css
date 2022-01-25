@@ -23,6 +23,11 @@ main{
   height: 100%;
   text-align: center;
   margin:auto;
+
+}
+
+span{
+  color:#fff;
 }
 main h2{
   font-size: 50px;
@@ -37,7 +42,7 @@ main h2{
   border-color: #8800ff !important;
 }
 form{
-
+  border-radius:15px;
   width: 30%;
   margin: auto;
   margin-top: auto;
