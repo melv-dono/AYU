@@ -22,7 +22,7 @@
           return('
             <tr>
             <td>'.$reservation["idreserv"].'</td>
-            <td>'.date('Y/m/d H:i:s',strtotime($reservation["dateD"])).'</td>
+            <td>'.date('Y/m/d',strtotime($reservation["dateD"])).'</td>
             <td>'.date('Y/m/d H:i:s',strtotime($reservation["heure"])).'</td>
             <td>'.$reservation['numeroSalle'].'</td>
             <td>'.$this->options().'</td>
@@ -46,8 +46,8 @@
               <table class="table table-dark table-hover">
                 <thead>
                   <th scope="col">id</th>
-                  <th scope="col">Date Debut</th>
-                  <th scope="col">Date Fin </th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Fin</th>
                   <th scope="col">Numero de salle</th>
                   <th scope="col">options</th>
                 </thead>
