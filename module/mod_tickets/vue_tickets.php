@@ -42,12 +42,16 @@
                         
                         <form id="Ticket" action="index.php?module=tickets&action=envoie" method="post">
                         <div class="container-fluid">
-                            <div class="col-sm-3">
+                        <div class="row justify-content-md-center">
+
+                            <div class="col-md-6">
                                 <label for="objet" class="form-label">Objet</label><br>
                                 <input type="text" id="objet" class="form-control" name="objet" required maxlength="49" size="10"><br>
                             </div>
-
-                            <div class="col-sm-3">
+                        </div>
+                        
+                        <div class="row justify-content-md-center">
+                            <div class="col-md-6">
                             <select id="ticketSalle" class="form-select" aria-label="Default select example" name="ticketSalle">';
 
                                 for ($i =0; $i<count($Salle); $i++) {
@@ -57,6 +61,8 @@
                 echo '            
                             </select>
                             </div>
+                        </div>
+                        
 
 
                             <div class="row justify-content-md-center">
