@@ -2,12 +2,39 @@
   class Vue_reservation {
 
       function afficheCreneau($creneaux, $date, $salle) {
+        require_once(FUNCTIONS);
+        $function=new Functions;
+        $function->showNav("reservation");
+        echo '<main class="app"
+          <div>
+              <h3>Créneaux dispo</h3>
+            <div>
+        ';
+        
         for ($i =0; $i<count($creneaux); $i++) {
           $output = $creneaux[$i] . ": 00-" . ($creneaux[$i] + 1) . ":00";
-          echo '<a class="flash" href="index?module=reservation&action=réserver&date2=' . $date . '&salle2=' . $salle . '&heure=' . $creneaux[$i] . '"><button type="button" name="" value="">' . $output . '</button></a> ';
+          echo '<a class="flash" href="index.php?module=reservation&action=réserver&date2=' . $date . '&salle2=' . $salle . '&heure=' . $creneaux[$i] . '"><button type="button" name="" value="">' . $output . '</button></a> ';
         }
         echo '
+          <a href="index.php?module=reservation" ><button type="button">Quitter</button></a>
+            </div>
+          </div>
+          </main>
           <script type="text/javascript" src="'.DIR_NAME.'flash_reservation.js"></script>
+        ';
+      }
+
+      function creanauIndispo() {
+        require_once(FUNCTIONS);
+        $function = new Functions();
+        $function->showNav('reservation');
+        echo '
+        <main class="app>
+        <div>
+          <p>Il n\' y a plus de réservation !</p>
+          <a href="index.php?module=reservation" ><button type="button">Quitter</button></a>
+        </div>
+        <main class="app>
         ';
       }
 
